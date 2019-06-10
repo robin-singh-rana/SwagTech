@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="shared-header">
+<title>SWAGTECH</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="SwagTech project" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="/bootstrap/css/bootstrap.min.css" />
+<link href="/fontawesome/css/fontawesome-all.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="/owlcarousel/owl.carousel.css" />
+<link rel="stylesheet" type="text/css"
+	href="/owlcarousel/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css" href="/owlcarousel/animate.css" />
+<link rel="stylesheet" type="text/css" href="/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+<link rel="stylesheet" type="text/css" href="/css/responsive.css" />
+
+<style>
+.cat_menu_container ul {
+	display: block;
+	position: absolute;
+	visibility: hidden;
+	top: 100%;
+	left: 0;
+	min-width: 100%;
+	background: #FFFFFF;
+	box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+	-webkit-transition: opacity 0.3s ease;
+	-moz-transition: opacity 0.3s ease;
+	-ms-transition: opacity 0.3s ease;
+	-o-transition: opacity 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.required {
+	color:red;
+}
+</style>
+
+</head>
+
+<body>
+
+	<div th:fragment="main-header">
+
+		<!-- Header -->
+
+		<header class="header">
+
+			<!-- Header Main -->
+
+			<div class="header_main">
+				<div class="container">
+					<div class="row">
+
+						<!-- Logo -->
+						<div class="col-lg-2 col-sm-3 col-3 order-1">
+							<div class="logo_container">
+								<div class="logo">
+									<a href="/"><img src="/others/images/logo.png" alt=""></a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Search -->
+						<div
+							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+							<div class="header_search">
+								<div class="header_search_content">
+									<div class="header_search_form_container">
+										<form action="#" class="header_search_form clearfix">
+											<input type="search" required="required"
+												class="header_search_input"
+												placeholder="Search for products...">
+											<div class="custom_dropdown">
+												<div class="custom_dropdown_list">
+													<span class="custom_dropdown_placeholder clc">All
+														Categories</span> <i class="fas fa-chevron-down"></i>
+													<ul class="custom_list clc">
+														<li><a class="clc" href="#">All Categories</a></li>
+														<li><a class="clc" href="#">Computers</a></li>
+														<li><a class="clc" href="#">Laptops</a></li>
+														<li><a class="clc" href="#">Cameras</a></li>
+														<li><a class="clc" href="#">Smartphones</a></li>
+													</ul>
+												</div>
+											</div>
+											<button type="submit" class="header_search_button trans_300"
+												value="Submit">
+												<i class="fa fa-search fa-lg" aria-hidden="true"></i>
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+
+			<nav class="main_nav">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+
+							<div class="main_nav_content d-flex flex-row">
+
+								<!-- Categories Menu -->
+
+								<div class="cat_menu_container">
+									<div
+										class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+										<div class="cat_burger">
+											<span></span><span></span><span></span>
+										</div>
+										<div class="cat_menu_text">categories</div>
+									</div>
+
+									<ul class="cat_menu">
+										<li><a href="#">Computers & Laptops <i
+												class="fas fa-chevron-right ml-auto"></i></a></li>
+										<li><a href="#">Cameras<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li class="hassubs"><a href="#">Accessories<i
+												class="fas fa-chevron-right"></i></a>
+											<ul>
+												<li class="hassubs"><a href="#">Gadgets<i
+														class="fas fa-chevron-right"></i></a>
+													<ul>
+														<li><a href="#">Cases & Covers<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Hard Disks<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Screen Protectors<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Mobile Chargers & Cables<i
+																class="fas fa-chevron-right"></i></a></li>
+													</ul></li>
+												<li><a href="#">Speakers<i
+														class="fas fa-chevron-right"></i></a></li>
+												<li><a href="#">Headphones<i
+														class="fas fa-chevron-right"></i></a></li>
+												<li><a href="#">Power Banks<i
+														class="fas fa-chevron-right"></i></a></li>
+											</ul></li>
+										<li><a href="#">Smartphones & Tablets<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li><a href="#">TV & Audio<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li><a href="#">Video Games & Consoles<i
+												class="fas fa-chevron-right"></i></a></li>
+									</ul>
+								</div>
+
+								<!-- Main Nav Menu -->
+
+								<div class="main_nav_menu ml-auto">
+									<ul class="standard_dropdown main_nav_dropdown">
+										<li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
+										<li class="hassubs"><a href="#">Super Deals<i
+												class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">SmartPhones<i
+														class="fas fa-chevron-down"></i></a>
+													<ul>
+														<li><a href="#">Under ₹20,000</a></li>
+														<li><a href="#">Under ₹30,000<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">Under ₹50,000<i
+																class="fas fa-chevron-down"></i></a></li>
+													</ul></li>
+												<li><a href="#">Cameras Under ₹40,000<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Laptops Under ₹50,000<i
+														class="fas fa-chevron-down"></i></a></li>
+											</ul></li>
+										<li class="hassubs"><a href="#">Featured Brands<i
+												class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">Apple<i class="fas fa-chevron-down"></i></a>
+													<ul>
+														<li><a href="#">iPhones<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">iPads<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">MacBooks<i
+																class="fas fa-chevron-down"></i></a></li>
+													</ul></li>
+												<li><a href="#">Xiaomi<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Samsung<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Dell<i class="fas fa-chevron-down"></i></a></li>
+											</ul></li>
+									</ul>
+								</div>
+
+								<!-- Menu Trigger -->
+
+								<div class="menu_trigger_container ml-auto">
+									<div
+										class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+										<div class="menu_burger">
+											<div class="menu_trigger_text">menu</div>
+											<div class="cat_burger menu_burger_inner">
+												<span></span><span></span><span></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+		</header>
+
+	</div>
+
+	<div th:fragment="bottom-scripts">
+
+		<script src="/jquery/jquery-3.4.1.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/owlcarousel/owl.carousel.js"></script>
+		<script src="/slick/slick.js"></script>
+		<script src="/js/custom.js"></script>
+	</div>
+</body>
+</html>

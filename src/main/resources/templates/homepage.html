@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>SWAGTECH</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="SwagTech shop project" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="/bootstrap/css/bootstrap.min.css" />
+<link href="/fontawesome/css/fontawesome-all.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="/owlcarousel/owl.carousel.css" />
+<link rel="stylesheet" type="text/css"
+	href="/owlcarousel/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css" href="/owlcarousel/animate.css" />
+<link rel="stylesheet" type="text/css" href="/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+<link rel="stylesheet" type="text/css" href="/css/responsive.css" />
+
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<header class="header">
+
+			<!-- Header Main -->
+
+			<div class="header_main">
+				<div class="container">
+					<div class="row">
+
+						<!-- Logo -->
+						<div class="col-lg-2 col-sm-3 col-3 order-1">
+							<div class="logo_container">
+								<div class="logo">
+									<a href="#"><img src="/others/images/logo.png" alt=""></a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Search -->
+						<div
+							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+							<div class="header_search">
+								<div class="header_search_content">
+									<div class="header_search_form_container">
+										<form action="#" class="header_search_form clearfix">
+											<input type="search" required="required"
+												class="header_search_input"
+												placeholder="Search for products...">
+											<div class="custom_dropdown">
+												<div class="custom_dropdown_list">
+													<span class="custom_dropdown_placeholder clc">All
+														Categories</span> <i class="fas fa-chevron-down"></i>
+													<ul class="custom_list clc">
+														<li><a class="clc" href="#">All Categories</a></li>
+														<li><a class="clc" href="#">Computers</a></li>
+														<li><a class="clc" href="#">Laptops</a></li>
+														<li><a class="clc" href="#">Cameras</a></li>
+														<li><a class="clc" href="#">Smartphones</a></li>
+													</ul>
+												</div>
+											</div>
+											<button type="submit" class="header_search_button trans_300"
+												value="Submit">
+												<i class="fa fa-search fa-lg" aria-hidden="true"></i>
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Wishlist -->
+						<div
+							class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+							<div
+								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+
+								<!-- My Account -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text">
+												<a sec:authorize="isAnonymous()" th:href="@{/myaccount}"><i class="fa fa-user fa-3x"
+													aria-hidden="true" style="text-shadow: 3px 3px 16px cyan"></i>
+													My Account</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+
+			<nav class="main_nav">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+
+							<div class="main_nav_content d-flex flex-row">
+
+								<!-- Categories Menu -->
+
+								<div class="cat_menu_container">
+									<div
+										class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+										<div class="cat_burger">
+											<span></span><span></span><span></span>
+										</div>
+										<div class="cat_menu_text">categories</div>
+									</div>
+
+									<ul class="cat_menu">
+										<li><a href="#">Computers & Laptops <i
+												class="fas fa-chevron-right ml-auto"></i></a></li>
+										<li><a href="#">Cameras<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li class="hassubs"><a href="#">Accessories<i
+												class="fas fa-chevron-right"></i></a>
+											<ul>
+												<li class="hassubs"><a href="#">Gadgets<i
+														class="fas fa-chevron-right"></i></a>
+													<ul>
+														<li><a href="#">Cases & Covers<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Hard Disks<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Screen Protectors<i
+																class="fas fa-chevron-right"></i></a></li>
+														<li><a href="#">Mobile Chargers & Cables<i
+																class="fas fa-chevron-right"></i></a></li>
+													</ul></li>
+												<li><a href="#">Speakers<i
+														class="fas fa-chevron-right"></i></a></li>
+												<li><a href="#">Headphones<i
+														class="fas fa-chevron-right"></i></a></li>
+												<li><a href="#">Power Banks<i
+														class="fas fa-chevron-right"></i></a></li>
+											</ul></li>
+										<li><a href="#">Smartphones & Tablets<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li><a href="#">TV & Audio<i
+												class="fas fa-chevron-right"></i></a></li>
+										<li><a href="#">Video Games & Consoles<i
+												class="fas fa-chevron-right"></i></a></li>
+									</ul>
+								</div>
+
+								<!-- Main Nav Menu -->
+
+								<div class="main_nav_menu ml-auto">
+									<ul class="standard_dropdown main_nav_dropdown">
+										<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+										<li class="hassubs"><a href="#">Super Deals<i
+												class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">SmartPhones<i
+														class="fas fa-chevron-down"></i></a>
+													<ul>
+														<li><a href="#">Under ₹20,000</a></li>
+														<li><a href="#">Under ₹30,000<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">Under ₹50,000<i
+																class="fas fa-chevron-down"></i></a></li>
+													</ul></li>
+												<li><a href="#">Cameras Under ₹40,000<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Laptops Under ₹50,000<i
+														class="fas fa-chevron-down"></i></a></li>
+											</ul></li>
+										<li class="hassubs"><a href="#">Featured Brands<i
+												class="fas fa-chevron-down"></i></a>
+											<ul>
+												<li><a href="#">Apple<i class="fas fa-chevron-down"></i></a>
+													<ul>
+														<li><a href="#">iPhones<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">iPads<i
+																class="fas fa-chevron-down"></i></a></li>
+														<li><a href="#">MacBooks<i
+																class="fas fa-chevron-down"></i></a></li>
+													</ul></li>
+												<li><a href="#">Xiaomi<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Samsung<i
+														class="fas fa-chevron-down"></i></a></li>
+												<li><a href="#">Dell<i class="fas fa-chevron-down"></i></a></li>
+											</ul></li>
+									</ul>
+								</div>
+
+								<!-- Menu Trigger -->
+
+								<div class="menu_trigger_container ml-auto">
+									<div
+										class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+										<div class="menu_burger">
+											<div class="menu_trigger_text">menu</div>
+											<div class="cat_burger menu_burger_inner">
+												<span></span><span></span><span></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+		</header>
+
+		<!-- Banner -->
+
+		<div class="banner">
+			<div class="banner_background">
+				<video style="width: 100%; min-height: 100%;" loop muted autoplay
+					src="/others/videos/background.mp4" type="video/mp4"></video>
+			</div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">
+								The New <br /> Era Of Technology <br /> Is Here
+							</h1>
+							<div class="button banner_button">
+								<a href="#">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Characteristics -->
+
+		<div class="characteristics">
+			<div class="container">
+				<div class="row">
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img src="/others/images/char_1.png" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Free Delivery</div>
+								<div class="char_subtitle">From ₹499</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img src="/others/images/char_2.png" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Easy Returns</div>
+								<div class="char_subtitle">Hassle Free Returns</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img src="/others/images/char_3.png" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Cash On Delivery</div>
+								<div class="char_subtitle">On Orders Below ₹20,000</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img src="/others/images/char_4.png" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Big Discounts</div>
+								<div class="char_subtitle">We Offer Discounts & Sales</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- Popular Categories -->
+
+	<div class="popular_categories">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="popular_categories_content">
+						<div class="popular_categories_title">Popular Categories</div>
+						<div class="popular_categories_slider_nav">
+							<div class="popular_categories_prev popular_categories_nav">
+								<i class="fas fa-angle-left ml-auto" style="color:black;"></i>
+							</div>
+							<div class="popular_categories_next popular_categories_nav" >
+								<i class="fas fa-angle-right ml-auto" style="color:black;"></i>
+							</div>
+						</div>
+						<div class="popular_categories_link">
+							<a href="#">full catalog</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Popular Categories Slider -->
+
+				<div class="col-lg-9">
+					<div class="popular_categories_slider_container">
+						<div class="owl-carousel owl-theme popular_categories_slider">
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div
+									class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image">
+										<img src="/others/images/popular_1.png" alt="">
+									</div>
+									<div class="popular_category_text">Smartphones & Tablets</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div
+									class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image">
+										<img src="/others/images/popular_2.png" alt="">
+									</div>
+									<div class="popular_category_text">Computers & Laptops</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div
+									class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image">
+										<img src="/others/images/popular_3.png" alt="">
+									</div>
+									<div class="popular_category_text">Gadgets</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div
+									class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image">
+										<img src="/others/images/popular_4.png" alt="">
+									</div>
+									<div class="popular_category_text">Video Games & Consoles</div>
+								</div>
+							</div>
+
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div
+									class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image">
+										<img src="/others/images/popular_5.png" alt="">
+									</div>
+									<div class="popular_category_text">Accessories</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Banner -->
+
+	<div class="banner_2">
+		<div class="banner_2_background"
+			style="background-image: url(/others/images/banner_2_background.jpg)"></div>
+		<div class="banner_2_container">
+			<div class="banner_2_dots"></div>
+			<!-- Banner 2 Slider -->
+
+			<div class="owl-carousel owl-theme banner_2_slider">
+
+				<!-- Banner 2 Slider Item -->
+				<div class="owl-item">
+					<div class="banner_2_item">
+						<div class="container fill_height">
+							<div class="row fill_height">
+								<div class="col-lg-4 col-md-6 fill_height">
+									<div class="banner_2_content">
+										<div class="banner_2_category">SmartPhones</div>
+										<div class="banner_2_title">Samsung Galaxy
+											S10e|S10|S10+|S10 5G</div>
+										<div class="banner_2_text">Next generation performance
+											for a generation that can’t wait. The phone that's ready to
+											go all day, just like you.</div>
+										<div class="button banner_2_button">
+											<a href="#">Explore</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-lg-8 col-md-6 fill_height">
+									<div class="banner_2_image_container">
+										<video style="width: 100%; height: 100%;" loop muted autoplay
+											src="/others/videos/samsungs10.mp4" type="video/mp4"></video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Banner 2 Slider Item -->
+				<div class="owl-item">
+					<div class="banner_2_item">
+						<div class="container fill_height">
+							<div class="row fill_height">
+								<div class="col-lg-4 col-md-6 fill_height">
+									<div class="banner_2_content">
+										<div class="banner_2_category">Cameras</div>
+										<div class="banner_2_title">Nikon D5600</div>
+										<div class="banner_2_text">The D5600 is ready to go
+											wherever your passion leads you, capturing everything with
+											stunning clarity, speed and resolution.</div>
+										<div class="button banner_2_button">
+											<a href="#">Explore</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-lg-8 col-md-6 fill_height">
+									<div class="banner_2_image_container">
+										<div class="banner_2_image">
+											<video style="width: 100%; height: 100%;" loop muted autoplay
+												src="/others/videos/nikond5600.mp4" type="video/mp4"></video>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Banner 2 Slider Item -->
+				<div class="owl-item">
+					<div class="banner_2_item">
+						<div class="container fill_height">
+							<div class="row fill_height">
+								<div class="col-lg-4 col-md-6 fill_height">
+									<div class="banner_2_content">
+										<div class="banner_2_category">Laptops</div>
+										<div class="banner_2_title">MacBook Air</div>
+										<div class="banner_2_text">The new thinner and lighter
+											MacBook Air features a Retina display, Touch ID and the
+											latest-generation butterfly keyboard with Force Touch
+											trackpad..</div>
+										<div class="button banner_2_button">
+											<a href="#">Explore</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-lg-8 col-md-6 fill_height">
+									<div class="banner_2_image_container">
+										<div class="banner_2_image">
+											<video style="width: 100%; height: 100%;" loop muted autoplay
+												src="/others/videos/macbook.mp4" type="video/mp4"></video>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_column footer_contact">
+						<div class="logo_container">
+							<div class="logo">
+								<a href="#"><img src="/others/images/logo.png" alt=""></a>
+							</div>
+						</div>
+						<div class="footer_title">Got Questions? Contact Us:</div>
+						<div class="footer_phone">+91 9876543210</div>
+						<div class="footer_contact_text">
+							<p>A B C Road, Gurgaon</p>
+							<p>India</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-2 offset-lg-2">
+					<div class="footer_column">
+						<div class="footer_title">Quick Links</div>
+						<ul class="footer_list">
+							<li><a href="#">Computers & Laptops</a></li>
+							<li><a href="#">Cameras & Photos</a></li>
+							<li><a href="#">Smartphones & Tablets</a></li>
+							<li><a href="#">TV & Audio</a></li>
+							<li><a href="#">Gadgets</a></li>
+							<li><a href="#">Video Games & Consoles</a></li>
+							<li><a href="#">Accessories</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-2">
+					<div class="footer_column">
+						<div class="footer_title">Brands</div>
+						<ul class="footer_list">
+							<li><a href="#">Apple</a></li>
+							<li><a href="#">Samsung</a></li>
+							<li><a href="#">Dell</a></li>
+							<li><a href="#">Nikon</a></li>
+							<li><a href="#">Xiaomi</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-2">
+					<div class="footer_column">
+						<div class="footer_title">Customer Care</div>
+						<ul class="footer_list">
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Queries</a></li>
+							<li><a href="#">Customer Services</a></li>
+							<li><a href="#">Returns / Exchange</a></li>
+							<li><a href="#">FAQs</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+
+	<div th:replace="common/header :: bottom-scripts"></div>
+
+
+</body>
+
+</html>

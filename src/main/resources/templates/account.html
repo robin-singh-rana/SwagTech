@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header">
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+		<div th:replace="common/header :: main-header"></div>
+
+		<div style="background-image:url(/others/images/banner_2_background.jpg); min-height:480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+			<div class="row"
+				style="padding-top: 50px; margin-bottom: 30px; margin-left: 200px;">
+				<div
+					class="col-xs-9 col-xs-offset-3 col-lg-9 col-lg-offset-3 col-sm-10 col-sm-offset-2">
+					<ul class="nav nav-pills" role="tablist">
+						<li class="nav-item"><a class="nav-link active" href="#menu1"
+							data-toggle="pill">Create Account</a></li>
+						<li class="nav-item"><a class="nav-link" href="#menu2"
+							data-toggle="pill">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="#menu3"
+							data-toggle="pill">Forgot Password</a></li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div id="menu1" class="tab-pane fade show active">
+							<div class="panel-group">
+								<div class="panel panel-default">
+									<div class="panel-body"
+										style="background-color: #ededed; margin-top: 20px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
+										<div class="alert alert-info" th:if="${emailSent}"> <!-- this message will be displayed if emailSent variable is true -->
+											An email has been sent to the email address you just registered. Please validate your email address and update your password information.
+										</div>
+										<form th:action="@{/newUser}" method="post">
+											<div class="form-group">
+												<label for="newUsername">* Username: </label>
+												<div class="alert alert-info" style="color: red;" th:if="${usernameExists}">Username already exists! Choose a different one.</div>
+												 <input
+													required="required" type="text" class="form-control"
+													id="newUsername" name="username" />
+												<p style="color: #828282">Enter your username here.</p>
+											</div>
+
+											<div class="form-group">
+												<label for="email">* Email Address: </label>
+												<div class="alert alert-info" style="color: red;" th:if="${useremailExists}">Email already exists! Choose a different one.</div> 
+												<input
+													required="required" type="text" class="form-control"
+													id="email" name="email" />
+												<p style="color: #828282">A valid email address. All
+													emails from the system withll be sent to this address. The
+													email address is not made public and will only be used if
+													you wish to receive a new password or wish to receive
+													certain notification.</p>
+											</div>
+
+											<button type="submit" class="btn btn-primary">Create
+												new account</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- login -->
+						<div class="tab-pane fade" id="menu2" th:classappend="${classActiveLogin}? 'in active'">
+							<div class="panel-group">
+								<div class="panel panel-default" style="border: none;">
+									<div class="panel-body"
+										style="background-color: #ededed; margin-top: 20px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
+										<div class="alert alert-info" th:if="${param.error != null}" style="color: red;">Incorrect username or password.</div>
+										<form th:action="@{/login}" method="post">
+											<div class="form-group">
+												<label for="newUsername">* Username: </label> <input
+													required="required" type="text" class="form-control"
+													id="newUsername" name="username" />
+												<p style="color: #828282">Enter your username here.</p>
+											</div>
+
+											<div class="form-group">
+												<label for="password">* Password: </label> <input
+													required="required" type="password" class="form-control"
+													id="password" name="password" />
+												<p style="color: #828282">Enter the password that
+													accompanies your username.</p>
+											</div>
+
+											<button type="submit" class="btn btn-primary">Log in</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- forgot password -->
+						<div class="tab-pane fade" id="menu3">
+							<div class="panel-group">
+								<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px; padding: 20px;  box-shadow: 2px 30px 70px 0 #212529;">
+										<div class="alert alert-info" style="color: red;" th:if="${emailNotExist}" >Email doesn't exist.</div>
+										<div class="alert alert-info" style="color: green;" th:if="${forgetPasswordEmailSent}" >Email sent.</div>
+										<form th:action="@{/forgetPassword}" method="post">
+											<div class="form-group">
+												<label for="recoverEmail">* Your Email: </label> <input
+													required="required" type="text" class="form-control"
+													id="recoverEmail" name="email" />
+												<p style="color: #828282">Enter your registered email
+													address here.</p>
+											</div>
+
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="common/footer :: shared-footer"></div>
+
+		<div th:replace="common/header :: bottom-scripts"></div>
+	</div>
+</body>
+
+</html>
