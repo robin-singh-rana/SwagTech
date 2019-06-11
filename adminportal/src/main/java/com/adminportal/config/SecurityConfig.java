@@ -41,9 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/js/**",
 			"/owlcarousel/**",
 			"/slick/**",
-			"/",
-			"/newUser",
-			"/myaccount"
+			"/"
 	};
 
 	@Override
@@ -60,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.csrf().disable().cors().disable()
 		
 		.formLogin().failureUrl("/login?error")
-			/*.defaultSuccessUrl("/")*/   // if failed to login then redirect to the same login page along with param as error
+			.defaultSuccessUrl("/")   // if failed to login then redirect to the same login page along with param as error
 			.loginPage("/login").permitAll()							 // now check if that param.error != null i.e there is error and then print error in login.html pag
 			.and()
 			
