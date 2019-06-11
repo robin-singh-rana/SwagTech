@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: shared-header"></head>
+
+<body style="background-image:url(/others/images/banner_2_background.jpg); min-height:480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+	<div class="container" >
+
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/"><img
+				src="/others/images/logo.png" alt=""><br /> <b
+				style="color: black;">ADMIN PORTAL</b></a>
+
+			<h1 style="color: #007bff; font-family: monospace;"><b>Welcome to SwagTech Admin Portal!</b>
+			</h1>
+		</nav>
+
+		<div class="panel-group" style="margin-bottom: 40px;">
+			<div class="panel panel-default" style="border: none;">
+				<div class="panel-body"
+					style="background-color: #ededed; margin-top: 120px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
+					<div class="bg-danger" th:if="${param.error}"
+						style="color: red;">Incorrect username or password.</div>
+						<div class="bg-danger" th:if="${param.logout}"
+						style="color: red;">You have been logged out.</div>
+					<form class="form-signin" th:action="@{/login}" method="post">
+					<h3 class="form-signin-heading">Please Sign In:</h3>
+						<div class="form-group">
+							<label for="username" class="sr-only">* Username</label> <input
+								type="text" class="form-control" id="username"
+								required="required" placeholder="Enter username" autofocus="autofocus" name="username">
+							<small class="form-text text-muted">Please enter admin username!</small>
+						</div>
+						<div class="form-group">
+							<label for="username" class="sr-only">* Password</label> <input
+								type="password" class="form-control" id="password"
+								required="required" placeholder="Enter password" autofocus="autofocus" name="username">
+							<small class="form-text text-muted">Please enter your password!</small>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="common/footer :: shared-footer"></div>
+
+	<div th:replace="common/header:: bottom-scripts"></div>
+</body>
+</html>
