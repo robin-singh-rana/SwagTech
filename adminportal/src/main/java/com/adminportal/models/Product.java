@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,7 @@ public class Product {
 	private String description;
 	private int inStockNumber;
 	
+	@Transient //i.e wont be stored in db
 	private MultipartFile productImage;
 
 	public Long getId() {
