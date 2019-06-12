@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header"></head>
+<body style="background-image:url(/others/images/banner_2_background.jpg); min-height:480px; background-repeat: round; background-attachment: scroll; background-size: auto;">
+	<div th:replace="common/header::navbar"></div>
+
+	<div class="container" style="width:80%">
+		<div class="panel-group" style="margin-bottom: 40px;">
+			<div class="panel panel-default" style="border: none;">
+				<div class="panel-body col-xs-12 col-md-12 col-lg-12"
+					style="background-color: #ededed; margin-top: 40px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
+					<form th:action="@{/product/add}" method="post"
+						enctype="multipart/form-data">
+						<fieldset>
+							<legend class="center-block">New Product Information:</legend>
+
+							<!--Category-->
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="category">Category:</label>
+								<select th:value="${product.category}" class="form-control"
+									id="category" name="category">
+									<option value="" selected="selected" disabled="disabled">Please
+										select the product category!</option>
+									<option value="Computer &amp; Laptops"
+										th:selected="(${product.category}=='Computer &amp; Laptops')">Computer
+										&amp; Laptops</option>
+									<option value="Cameras"
+										th:selected="(${product.category}=='Cameras')">Cameras</option>
+									<option value="Accessories"
+										th:selected="(${product.category}=='Accessories')">Accessories</option>
+									<option value="Smartphones"
+										th:selected="(${product.category}=='Smartphones')">Smartphones</option>
+									<option value="Tablets"
+										th:selected="(${product.category}=='Tablets')">Tablets</option>
+									<option value="TV &amp; Audio"
+										th:selected="(${product.category}=='TV &amp; Audio')">TV
+										&amp; Audio</option>
+									<option value="Video Games &amp; Consoles"
+										th:selected="(${product.category}=='Video Games &amp; Consoles')">Video
+										Games &amp; Consoles</option>
+								</select> <small class="form-text text-muted">Select category of
+									the product.</small>
+							</div>
+
+							<!--Sub-category-->
+							<div class="form-group">
+								<label class="col-xs-2 control-label" for="category">Sub
+									Category:</label>
+								<div class="col-xs-8">
+									<select th:value="${product.subcategory}" class="form-control"
+										id="subcategory" name="subcategory">
+										<option value="" selected="selected" disabled="disabled">Please
+											select the product sub-category!</option>
+										<option value="none"
+											th:selected="(${product.subcategory}=='none')">none</option>
+										<option value="Cases &amp; Covers"
+											th:selected="(${product.subcategory}=='Cases &amp; Covers')">Cases
+											&amp; Covers</option>
+										<option value="Hard Disks"
+											th:selected="(${product.subcategory}=='Hard Disks')">Hard
+											Disks</option>
+										<option value="Screen Protectors"
+											th:selected="(${product.subcategory}=='Screen Protectors')">Screen
+											Protectors</option>
+										<option value="Mobile Chargers &amp; Cables"
+											th:selected="(${product.subcategory}=='Mobile Chargers &amp; Cables')">Mobile
+											Chargers &amp; Cables</option>
+										<option value="Speakers"
+											th:selected="(${product.subcategory}=='Speakers')">Speakers</option>
+										<option value="Headphones"
+											th:selected="(${product.subcategory}=='Headphones')">Headphones</option>
+										<option value="Power Banks"
+											th:selected="(${product.subcategory}=='Power Banks')">Power
+											Banks</option>
+									</select>
+								</div>
+								<small class="form-text text-muted">Select Sub category
+									of the product.</small>
+							</div>
+
+							<!--Title-->
+							<div class="form-group">
+								<label for="title">Title:</label> <input type="text"
+									name="title" class="form-control" id="title"
+									placeholder="Enter title" required="required"
+									th:value="${product.title}" /> <small
+									class="form-text text-muted">Enter the title of the
+									product.</small>
+							</div>
+
+							<!--brand-->
+							<div class="form-group">
+								<label for="brand">Brand:</label> <input type="text"
+									name="brand" class="form-control" id="brand"
+									placeholder="Enter brand" required="required"
+									th:value="${product.brand}" /> <small
+									class="form-text text-muted">Enter the brand of the
+									product.</small>
+							</div>
+
+							<!--List Price-->
+							<div class="form-group">
+								<label for="listPrice">List Price:</label> <span
+									class="input-group-addon">₹&nbsp;</span> <input type="number"
+									name="listprice" class="form-control" id="listPrice"
+									placeholder="Enter list price" required="required"
+									th:value="${product.listPrice}" /> <small
+									class="form-text text-muted">Enter the list price of
+									the product.</small>
+							</div>
+
+							<!--Our Price-->
+							<div class="form-group">
+								<label for="ourPrice">Our Price:</label> <span
+									class="input-group-addon">₹&nbsp;</span> <input type="number"
+									name="ourPrice" class="form-control" id="ourPrice"
+									placeholder="Enter our price" required="required"
+									th:value="${product.ourPrice}" /> <small
+									class="form-text text-muted">Enter our price of the
+									product.</small>
+							</div>
+
+							<!--In stock number-->
+							<div class="form-group">
+								<label for="inStockNumber">In Stock Number:</label> <input
+									type="number" name="inStockNumber" class="form-control"
+									id="listprice" placeholder="Enter in stock number"
+									required="required" th:value="${product.inStockNumber}" /> <small
+									class="form-text text-muted">Enter in stock number of
+									the product.</small>
+							</div>
+
+							<!-- status of product -->
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="status">Status</label>
+								<div class="col-md-8">
+									<label><input value="true" type="radio" name="active"
+										checked="checked" /> Active </label> <label><input
+										value="false" type="radio" name="active" /> Inactive </label> <br />
+									<small class="help-block">Whether the product is active
+										or inactive</small>
+								</div>
+							</div>
+
+							<!-- description -->
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="description">Description</label>
+								<div class="col-md-8">
+									<textarea name="description" rows="6" class="form-control"
+										id="description" th:value="${product.description}"
+										placeholder="Enter Description of the product."></textarea>
+									<span class="help-block">Description of the product.</span>
+								</div>
+							</div>
+
+							<!-- upload image -->
+							<div class="form-group">
+								<div class="col-md-2">
+									<label for="productImage">Upload product image</label>
+								</div>
+								<div class="col-md-8">
+									<input id="productImage" type="file" name="productImage"
+										th:value="${product.productImage}" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-2"></div>
+								<div class="col-md-8">
+									<button type="submit" class="btn btn-success">Add Book</button>
+									<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+								</div>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="common/footer :: shared-footer"></div>
+
+	<div th:replace="common/header:: bottom-scripts"></div>
+</body>
+</html>

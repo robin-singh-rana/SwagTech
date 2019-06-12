@@ -18,6 +18,7 @@ public class Product {
 	private String title;
 	private String brand;
 	private String category;
+	private String subcategory;
 	private boolean active=true;
 	private double listPrice;
 	private double ourPrice;
@@ -107,6 +108,14 @@ public class Product {
 
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
+	}
+	
+	public String getSubcategory() {
+		return subcategory;
+	}
+
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
 	}
 	
 }

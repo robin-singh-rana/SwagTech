@@ -2,10 +2,42 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="common/header :: shared-header"></head>
-<body>
-	<div th:replace="common/header::navbar"></div>
-	
-	
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+
+	<div class="container col-xs-12"
+		style="box-shadow: 2px 0px 70px 0 #212529; margin-bottom: 30px;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/"><img
+				src="/others/images/logo.png" alt=""><br /> <b>ADMIN
+					PORTAL</b></a> <a th:href="@{/logout}"><button type="button"
+					style="position: absolute; right: 10px; margin-top: -20px;"
+					class="btn btn-success">Sign Out</button></a>
+		</nav>
+	</div>
+
+	<div class="col-xs-12" style="text-align: center; margin-bottom: 20px;">
+		<h1 class="col-xs-12" style="color: #007bff; font-family: monospace;">
+			<b>Welcome admin what would you like to do:</b>
+		</h1>
+
+		<div class="row">
+			<div class="column col-xs-6" style="float: left; width: 50%; padding: 5px; margin-top: 55px; ">
+				<a th:href="@{/product/add}"><img src="/others/images/popular_3.png" alt="Snow"
+					style="width: auto;"></a>
+				<h3 style="font-family: monospace;">Add a product.</h3>
+			</div>
+			
+			<div class="column col-xs-6" style="float: left; width: 50%; padding: 5px; margin-top: 40px;">
+				<a th:href="@{#}"><i class="fab fa-searchengin fa-6x" style="color: black;"></i></a>
+					<h3 style="font-family: monospace;">View Product list.</h3>
+			</div>
+		</div>
+
+	</div>
+
+	<div th:replace="common/footer :: shared-footer"></div>
+
 	<div th:replace="common/header:: bottom-scripts"></div>
 </body>
 </html>
