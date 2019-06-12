@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header"></head>
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+
+	<div class="container col-xs-12"
+		style="box-shadow: 2px 0px 70px 0 #212529; margin-bottom: 30px;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/"><img
+				src="/others/images/logo.png" alt=""><br /> <b>ADMIN
+					PORTAL</b></a> <a th:href="@{/logout}"><button type="button"
+					style="position: absolute; right: 10px; margin-top: -20px;"
+					class="btn btn-success">Sign Out</button></a>
+		</nav>
+	</div>
+
+	<h1>PRODUCT LIST PAGE!</h1>
+
+	<div th:replace="common/footer :: shared-footer"></div>
+
+	<div th:replace="common/header:: bottom-scripts"></div>
+</body>
+</html>
