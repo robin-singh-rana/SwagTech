@@ -3,6 +3,7 @@ package com.adminportal.controllers;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.models.Product;
 import com.adminportal.services.ProductService;
+
 
 @Controller
 @RequestMapping("/product")
@@ -59,6 +61,8 @@ public class ProductController {
 	@RequestMapping("/productList")
 	public String productList(Model model)
 	{
+		List<Product> productList = (List<Product>) productService.findAll();
+		model.addAttribute("productList",productList);
 		return "productList";
 	}
 }
