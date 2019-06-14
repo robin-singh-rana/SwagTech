@@ -4,53 +4,49 @@
 <head th:replace="common/header :: shared-header">
 </head>
 
-<body >
+<body>
 
 	<div class="super_container">
 
 		<!-- Header -->
 		<div th:replace="common/header :: main-header"></div>
+		
+		<!-- new -->
 
-		<div class="row" style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;" >
-			<div class="col-xs-9" style="width:100%;">
-				<div th:if="${emptyList}">
-					<h3 style="font-style: italic;">Oops, no result is found. Try
-						again later.</h3>
+		<div class="container"
+			style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto; margin-top: 20px;">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					<div th:if="${emptyList}">
+						<h3 style="font-style: italic;">Oops, no result is found. Try
+							again later.</h3>
+					</div>
+
+					<table class="table table-image table-responsive" style="">
+						<thead>
+							<tr style="text-align: center; vertical-align: middle;">
+								<th scope="col">Product</th>
+								<th scope="col">Category</th>
+								<th scope="col">Title</th>
+								<th scope="col">Brand</th>
+								<th scope="col">Our Price</th>
+								<th scope="col">List Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="product : ${productList}" style="text-align: center; vertical-align: middle;">
+								<td class="w-25" style="background-color: white;">
+								<img th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'"/></td>
+								<td><span th:text="${product.category}" style="font-weight: bold; color: #0e8ce4;"></span></td>
+								<td><span th:text="${product.title}" style="font-weight: bold; color: #0e8ce4;"></span></td>
+								<td><span th:text="${product.brand}" style="font-weight: bold; color: #0e8ce4;"></span></td>
+								<td>₹<span th:text="${product.ourPrice}" style="font-weight: bold; color: #0e8ce4;"></span></td>
+								<td>₹<span th:text="${product.listPrice}" style=" color: red; text-decoration: line-through;"></span></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-
-				<table style="border: 0;" id="productList">
-					<thead>
-						<tr>
-							<th>Products:</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="product-item" data-th-each="product : ${productList}">
-							<td>
-								<div th:if="${product != null}">
-									<div class="row">
-										<div class="col-xs-3">
-											<img class="img-responsive product-shop"
-												th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'" />
-										</div>
-										<div class="col-xs-9">
-											<h4 th:text="${product.title}"></h4>
-											<span th:text="${product.category}"></span> <span
-												th:text="${product.brand}"></span><span
-												style="font-size: x-large; color: #db3208;">₹<span
-												th:text="${#numbers.formatDecimal(product.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
-
-											<span style="text-decoration: line-through;">₹<span
-												th:text="${#numbers.formatDecimal(product.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
-
-											<p th:text="${#strings.abbreviate(product.description, 500)}"></p>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</div>
 
