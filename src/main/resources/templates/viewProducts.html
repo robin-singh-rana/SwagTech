@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header">
+</head>
+
+<body >
+
+	<div class="super_container">
+
+		<!-- Header -->
+		<div th:replace="common/header :: main-header"></div>
+
+		<div class="row" style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;" >
+			<div class="col-xs-9" style="width:100%;">
+				<div th:if="${emptyList}">
+					<h3 style="font-style: italic;">Oops, no result is found. Try
+						again later.</h3>
+				</div>
+
+				<table style="border: 0;" id="productList">
+					<thead>
+						<tr>
+							<th>Products:</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="product-item" data-th-each="product : ${productList}">
+							<td>
+								<div th:if="${product != null}">
+									<div class="row">
+										<div class="col-xs-3">
+											<img class="img-responsive product-shop"
+												th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'" />
+										</div>
+										<div class="col-xs-9">
+											<h4 th:text="${product.title}"></h4>
+											<span th:text="${product.category}"></span> <span
+												th:text="${product.brand}"></span><span
+												style="font-size: x-large; color: #db3208;">₹<span
+												th:text="${#numbers.formatDecimal(product.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+											<span style="text-decoration: line-through;">₹<span
+												th:text="${#numbers.formatDecimal(product.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+											<p th:text="${#strings.abbreviate(product.description, 500)}"></p>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div th:replace="common/footer :: shared-footer"></div>
+
+		<div th:replace="common/header :: bottom-scripts"></div>
+	</div>
+</body>
+</html>

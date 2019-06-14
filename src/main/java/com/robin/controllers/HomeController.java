@@ -1,6 +1,7 @@
 package com.robin.controllers;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.robin.models.Product;
 import com.robin.models.User;
 import com.robin.models.security.PasswordResetToken;
 import com.robin.models.security.Role;
 import com.robin.models.security.UserRole;
+import com.robin.services.ProductService;
 import com.robin.services.UserSecurityService;
 import com.robin.services.UserService;
 import com.robin.utilities.MailConstructor;
@@ -38,6 +41,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserSecurityService userSecurityService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -193,6 +199,15 @@ public class HomeController {
 		model.addAttribute("user",user);
 		model.addAttribute("classActiveEdit",true);
 		return "profile";
+	}
+	
+	
+	@RequestMapping("/viewProducts")
+	public String viewProducts(Model model)
+	{
+		List<Product> productList = productService.findAll();
+		model.addAttribute("productList",productList);
+		return "viewProducts";
 	}
 	
 }
