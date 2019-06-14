@@ -21,7 +21,7 @@
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: lightgrey;">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th>Title</th>
 						<th>Category</th>
 						<th>Brand</th>
@@ -32,8 +32,8 @@
 				</tr>
 			</thead>
 				<tbody>
-					<tr data-th-each="product: ${productList}">
-						<td th:text="${product.title}"></td>
+					<tr data-th-each="product: ${productList}" style="text-align: center;">
+						<td ><a th:href="@{/product/productInfo(id=${product.id})}"><span th:text="${product.title}"></span></a></td>
 						<td th:text="${product.category}"></td>
 						<td th:text="${product.brand}"></td>
 						<td th:text="${product.listPrice}"></td>
@@ -44,9 +44,11 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<div th:replace="common/footer :: shared-footer"></div>
+	
 </div>
 
-	<div th:replace="common/footer :: shared-footer"></div>
 
 	<div th:replace="common/header:: bottom-scripts"></div>
 </body>

@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.models.Product;
@@ -64,5 +66,14 @@ public class ProductController {
 		List<Product> productList = (List<Product>) productService.findAll();
 		model.addAttribute("productList",productList);
 		return "productList";
+	}
+	
+	@RequestMapping("/productInfo")
+	public String productInfo(@RequestParam("id") Long id, Model model)
+	{
+		Optional<Product> product1 = productService.findById(id);
+		Product product = product1.get();
+		model.addAttribute("product",product);
+		return "productInfo";
 	}
 }

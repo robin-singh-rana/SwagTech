@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header"></head>
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+
+	<div class="container col-xs-12"
+		style="box-shadow: 2px 0px 70px 0 #212529; margin-bottom: 30px;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/"><img
+				src="/others/images/logo.png" alt=""><br /> <b>ADMIN
+					PORTAL</b></a> <a th:href="@{/logout}"><button type="button"
+					style="position: absolute; right: 10px; margin-top: -20px;"
+					class="btn btn-success">Sign Out</button></a>
+		</nav>
+	</div>
+	
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/product/productList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Go back</a></li>
+				<li><a th:href="@{/product/updateProduct?id=}+${product.id}">Edit</a></li>
+			</ol>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="panel panel-default">
+				<div class="panel-body">
+					<img th:src="@{/others/images/product/}+${product.id}+'.png'" class="img-responsive" />
+				</div>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<h3 th:text="${product.title}"></h3>
+				<div class="row">
+					<div class="col-xs-6">
+						<p><strong>Category: </strong><span th:text="${product.category}"></span></p>
+						<p><strong>Title: </strong><span th:text="${product.title}"></span></p>
+						<p><strong>Brand: </strong><span th:text="${product.brand}"></span></p>
+						<p><strong>List Price: </strong><span th:text="${product.listPrice}"></span></p>
+					</div>
+					<div class="col-xs-6">
+					<p><strong>Our Price: </strong><span th:text="${product.ourPrice}"></span></p>
+					<p><strong>Sub Category: </strong><span th:text="${product.subcategory}"></span></p>
+						<p><strong>In Stock Number: </strong><span th:text="${product.inStockNumber}"></span></p>
+						<p><strong>Status: </strong><span th:text="${product.active}"></span></p>
+					</div>
+				</div>
+				
+				<p><Strong>Description: </Strong><span th:text="${product.description}"></span></p>
+			</div>
+			
+		</div>
+	</div>
+	
+</body>
+</html>
