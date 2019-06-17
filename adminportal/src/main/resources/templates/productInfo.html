@@ -17,10 +17,10 @@
 	</div>
 	
 	<div class="container">
-		<div>
+		<div> 
 			<ol class="breadcrumb">
-				<li><a th:href="@{/product/productList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Go back</a></li>
-				<li><a th:href="@{/product/updateProduct?id=}+${product.id}">Edit</a></li>
+				<li><a class="btn btn-primary" th:href="@{/product/productList}" role="button"><i class="fas fa-arrow-circle-left"></i>Go Back</a></li>
+				<li style="float: right;"><a class="btn btn-primary" th:href="@{/product/updateProduct?id=}+${product.id}" role="button"><i class="fas fa-arrow-circle-right"></i>Edit</a></li>
 			</ol>
 			
 		</div>
@@ -40,10 +40,10 @@
 						<p><strong>Category: </strong><span th:text="${product.category}"></span></p>
 						<p><strong>Title: </strong><span th:text="${product.title}"></span></p>
 						<p><strong>Brand: </strong><span th:text="${product.brand}"></span></p>
-						<p><strong>List Price: </strong><span th:text="${product.listPrice}"></span></p>
+						<p><strong>List Price: </strong>₹&nbsp;<span th:text="${product.listPrice}" style="text-decoration: line-through;"></span></p>
 					</div>
 					<div class="col-xs-6">
-					<p><strong>Our Price: </strong><span th:text="${product.ourPrice}"></span></p>
+					<p><strong>Our Price: </strong>₹&nbsp;<span th:text="${product.ourPrice}"></span></p>
 					<p><strong>Sub Category: </strong><span th:text="${product.subcategory}"></span></p>
 						<p><strong>In Stock Number: </strong><span th:text="${product.inStockNumber}"></span></p>
 						<p><strong>Status: </strong><span th:text="${product.active}"></span></p>

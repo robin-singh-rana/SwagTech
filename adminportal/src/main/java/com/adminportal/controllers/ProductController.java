@@ -3,6 +3,8 @@ package com.adminportal.controllers;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,4 +78,41 @@ public class ProductController {
 		model.addAttribute("product",product);
 		return "productInfo";
 	}
+	
+	@RequestMapping("/updateProduct")
+	public String updateProduct(@RequestParam("id") Long id, Model model)
+	{
+		Optional<Product> product1 = productService.findById(id);
+		Product product = product1.get();
+		model.addAttribute("product",product);
+		return "updateProduct";
+	}
+	
+	@RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+	public String updateProductList(@ModelAttribute("product") Product product, HttpServletRequest request)
+	{
+		productService.save(product);
+		
+		MultipartFile productImage = product.getProductImage();
+		
+		if(productImage.isEmpty()==false)
+		{
+			try {
+				byte bytes[] = productImage.getBytes();
+				String name=product.getId()+ ".png";
+				
+				Files.delete(Paths.get("src/main/resources/static/others/images/product/"+name));
+				
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/others/images/product/"+ name)));
+				stream.write(bytes);
+				stream.close();
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return "redirect:/product/productInfo?id="+product.getId();
+	}
+	
 }
