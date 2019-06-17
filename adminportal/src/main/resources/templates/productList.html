@@ -19,7 +19,7 @@
 		<h2 style="text-align: center;">The Product List is as:</h2>
 
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: lightgrey;">
+			<table id="productListTable" class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: lightgrey;">
 				<thead>
 					<tr style="text-align: center;">
 						<th>Title</th>
@@ -51,5 +51,14 @@
 
 
 	<div th:replace="common/header:: bottom-scripts"></div>
+	
+	<script>
+	
+	$(document).ready(function() {
+	    $('#productListTable').DataTable();
+	} );
+	
+	</script>
+	
 </body>
 </html>

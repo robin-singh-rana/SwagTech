@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/js/**",
 			"/owlcarousel/**",
 			"/slick/**",
+			"/datatables/**",
 	};
 
 	@Override
