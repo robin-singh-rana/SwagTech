@@ -3,7 +3,7 @@
 
 <head th:replace="common/header :: shared-header"></head>
 <body
-	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px;background-repeat: round; background-attachment: fixed; background-size: auto;">
 
 	<div class="container col-xs-12"
 	style="box-shadow: 2px 0px 70px 0 #212529; margin-bottom: 30px;">
@@ -19,7 +19,7 @@
 		<h2 style="text-align: center;">The Product List is as:</h2>
 
 		<div class="table-responsive">
-			<table id="productListTable" class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: lightgrey;">
+			<table id="productListTable" class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: mintcream;">
 				<thead>
 					<tr style="text-align: center;">
 						<th>Title</th>
@@ -39,7 +39,7 @@
 						<td th:text="${product.listPrice}"></td>
 						<td th:text="${product.ourPrice}"></td>
 						<td th:text="${product.active}"></td>
-						<td >Delete</td>
+						<td ><a style="text-decoration: none;" th:href="@{#}"><i class="fas fa-trash-alt"></i><button type="button" class="btn btn-danger">Delete</button></a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -53,9 +53,9 @@
 	<div th:replace="common/header:: bottom-scripts"></div>
 	
 	<script>
-	
+
 	$(document).ready(function() {
-	    $('#productListTable').DataTable();
+	    $('#productListTable').DataTable()
 	} );
 	
 	</script>

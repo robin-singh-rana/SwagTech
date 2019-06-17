@@ -3,7 +3,7 @@
 
 <head th:replace="common/header :: shared-header"></head>
 <body
-	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: no-repeat; background-attachment: scroll; background-size: auto;">
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: round; background-attachment: fixed; background-size: auto;">
 
 	<div class="container col-xs-12"
 		style="box-shadow: 2px 0px 70px 0 #212529; margin-bottom: 30px;">
@@ -15,46 +15,76 @@
 					class="btn btn-success">Sign Out</button></a>
 		</nav>
 	</div>
-	
+
 	<div class="container">
-		<div> 
-			<ol class="breadcrumb">
-				<li><a class="btn btn-primary" th:href="@{/product/productList}" role="button"><i class="fas fa-arrow-circle-left"></i>Go Back</a></li>
-				<li style="float: right;"><a class="btn btn-primary" th:href="@{/product/updateProduct?id=}+${product.id}" role="button"><i class="fas fa-arrow-circle-right"></i>Edit</a></li>
-			</ol>
-			
+
+		<div class="row col-xs-12" style="margin-bottom: 30px; background: transparent;">
+			<div class="col-sm col-6" >
+				<a style="box-shadow: 2px 0px 70px 0 white;" class="btn btn-primary" th:href="@{/product/productList}"
+					role="button"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back</a>
+			</div>
+			<div class="col-sm col-6" style="text-align: right;">
+				<a style="box-shadow: 2px 0px 70px 0 white;" class="btn btn-primary"
+					th:href="@{/product/updateProduct?id=}+${product.id}" role="button">Edit&nbsp;&nbsp;<i
+					class="fas fa-arrow-circle-right"></i></a>
+			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-xs-3">
 				<div class="panel panel-default">
-				<div class="panel-body">
-					<img th:src="@{/others/images/product/}+${product.id}+'.png'" class="img-responsive" />
-				</div>
+					<div class="panel-body">
+						<img th:src="@{/others/images/product/}+${product.id}+'.png'"
+							class="img-responsive" />
+					</div>
 				</div>
 			</div>
 			<div class="col-xs-9">
 				<h3 th:text="${product.title}"></h3>
 				<div class="row">
 					<div class="col-xs-6">
-						<p><strong>Category: </strong><span th:text="${product.category}"></span></p>
-						<p><strong>Title: </strong><span th:text="${product.title}"></span></p>
-						<p><strong>Brand: </strong><span th:text="${product.brand}"></span></p>
-						<p><strong>List Price: </strong>₹&nbsp;<span th:text="${product.listPrice}" style="text-decoration: line-through;"></span></p>
+						<p>
+							<strong>Category: </strong><span th:text="${product.category}"></span>
+						</p>
+						<p>
+							<strong>Title: </strong><span th:text="${product.title}"></span>
+						</p>
+						<p>
+							<strong>Brand: </strong><span th:text="${product.brand}"></span>
+						</p>
+						<p>
+							<strong>List Price: </strong>₹&nbsp;<span
+								th:text="${product.listPrice}"
+								style="text-decoration: line-through;"></span>
+						</p>
 					</div>
 					<div class="col-xs-6">
-					<p><strong>Our Price: </strong>₹&nbsp;<span th:text="${product.ourPrice}"></span></p>
-					<p><strong>Sub Category: </strong><span th:text="${product.subcategory}"></span></p>
-						<p><strong>In Stock Number: </strong><span th:text="${product.inStockNumber}"></span></p>
-						<p><strong>Status: </strong><span th:text="${product.active}"></span></p>
+						<p>
+							<strong>Our Price: </strong>₹&nbsp;<span
+								th:text="${product.ourPrice}"></span>
+						</p>
+						<p>
+							<strong>Sub Category: </strong><span
+								th:text="${product.subcategory}"></span>
+						</p>
+						<p>
+							<strong>In Stock Number: </strong><span
+								th:text="${product.inStockNumber}"></span>
+						</p>
+						<p>
+							<strong>Status: </strong><span th:text="${product.active}"></span>
+						</p>
 					</div>
 				</div>
-				
-				<p><Strong>Description: </Strong><span th:utext="${product.description}"></span></p>
+
+				<p>
+					<Strong>Description: </Strong><span
+						th:utext="${product.description}"></span>
+				</p>
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 </body>
 </html>
