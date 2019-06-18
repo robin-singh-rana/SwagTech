@@ -16,12 +16,14 @@
 		</nav>
 	</div>
 
+	<!-- navigation buttons container-->
 	<div class="container">
-
-		<div class="row col-xs-12" style="margin-bottom: 30px; background: transparent;">
-			<div class="col-sm col-6" >
-				<a style="box-shadow: 2px 0px 70px 0 white;" class="btn btn-primary" th:href="@{/product/productList}"
-					role="button"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back</a>
+		<div class="row col-xs-12"
+			style="margin-bottom: 30px; background: transparent;">
+			<div class="col-sm col-6">
+				<a style="box-shadow: 2px 0px 70px 0 white;" class="btn btn-primary"
+					th:href="@{/product/productList}" role="button"><i
+					class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back</a>
 			</div>
 			<div class="col-sm col-6" style="text-align: right;">
 				<a style="box-shadow: 2px 0px 70px 0 white;" class="btn btn-primary"
@@ -29,62 +31,77 @@
 					class="fas fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
+	</div>
+
+	<!-- product information container container-->
+	<div class="container">
 
 		<div class="row">
-			<div class="col-xs-3">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<img th:src="@{/others/images/product/}+${product.id}+'.png'"
-							class="img-responsive" />
-					</div>
-				</div>
+
+			<!-- column 1(product image) -->
+			<div class="col" style="text-align: center; ">
+				<img style="box-shadow: 2px 0px 70px 0 blanchedalmond; background-color: white;"
+					th:src="@{/others/images/product/}+${product.id}+'.png'"
+					class="img-responsive" />
+				<h3 style="font-family: inherit; margin-top: 10px;" th:text="${product.title}"></h3>
+
 			</div>
-			<div class="col-xs-9">
-				<h3 th:text="${product.title}"></h3>
-				<div class="row">
-					<div class="col-xs-6">
-						<p>
-							<strong>Category: </strong><span th:text="${product.category}"></span>
-						</p>
-						<p>
-							<strong>Title: </strong><span th:text="${product.title}"></span>
-						</p>
-						<p>
-							<strong>Brand: </strong><span th:text="${product.brand}"></span>
-						</p>
-						<p>
-							<strong>List Price: </strong>₹&nbsp;<span
-								th:text="${product.listPrice}"
-								style="text-decoration: line-through;"></span>
-						</p>
-					</div>
-					<div class="col-xs-6">
-						<p>
-							<strong>Our Price: </strong>₹&nbsp;<span
-								th:text="${product.ourPrice}"></span>
-						</p>
-						<p>
-							<strong>Sub Category: </strong><span
-								th:text="${product.subcategory}"></span>
-						</p>
-						<p>
-							<strong>In Stock Number: </strong><span
-								th:text="${product.inStockNumber}"></span>
-						</p>
-						<p>
-							<strong>Status: </strong><span th:text="${product.active}"></span>
-						</p>
-					</div>
-				</div>
+
+			<!-- column 2(product description 1) -->
+			<div class="col" style="padding: 30px;">
+				<p>
+					<strong>Title: </strong><span th:text="${product.title}"></span>
+				</p>
+				<p>
+					<strong>Category: </strong><span th:text="${product.category}"></span>
+				</p>
+				<p>
+					<strong>Sub Category: </strong><span
+						style="text-transform: uppercase;"
+						th:text="${product.subcategory}"></span>
+				</p>
+				<p>
+					<strong>Brand: </strong><span th:text="${product.brand}"></span>
+				</p>
+			</div>
+
+			<!-- column 2(product description 2) -->
+			<div class="col" style="padding: 30px;">
+				<p>
+					<strong>List Price: </strong>₹&nbsp;<span
+						th:text="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"
+						style="text-decoration: line-through; color: crimson;"></span>
+				</p>
+				<p>
+					<strong>Our Price: </strong>₹&nbsp; <span
+						th:text="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span>
+				</p>
 
 				<p>
-					<Strong>Description: </Strong><span
-						th:utext="${product.description}"></span>
+					<strong>In Stock Number: </strong><span
+						th:text="${product.inStockNumber}"></span>
 				</p>
+				<p>
+					<strong>Status: </strong><span style="text-transform: uppercase;"
+						th:text="${product.active}"></span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- title container-->
+	<div class="container" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col">
+				<h3>Description:</h3>
+				<span style="text-align: center; background-color: none;" th:utext="${product.description}"></span>
 			</div>
 
 		</div>
 	</div>
+
+	<div th:replace="common/footer :: shared-footer"></div>
 
 </body>
 </html>
