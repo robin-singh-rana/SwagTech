@@ -19,6 +19,9 @@
 <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
 <link rel="stylesheet" type="text/css" href="/css/responsive.css" />
 
+<!-- Data table -->
+<link rel="stylesheet" type="text/css" th:href="@{/datatables/css/dataTables.bootstrap4.min.css}" />
+
 <style>
 .cat_menu_container ul {
 	display: block;
@@ -235,6 +238,8 @@
 		<script src="/owlcarousel/owl.carousel.js"></script>
 		<script src="/slick/slick.js"></script>
 		<script src="/js/custom.js"></script>
+		<script th:src="@{/datatables/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/datatables/js/dataTables.bootstrap4.min.js}"></script>
 	</div>
 </body>
 </html>

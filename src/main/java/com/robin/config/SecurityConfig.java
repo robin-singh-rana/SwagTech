@@ -43,7 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/slick/**",
 			"/",
 			"/newUser",
-			"/myaccount"
+			"/myaccount",
+			"/datatables/**",
+			"/viewProducts"
 	};
 
 	@Override
