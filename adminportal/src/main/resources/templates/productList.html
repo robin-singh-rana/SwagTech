@@ -33,7 +33,7 @@
 			</thead>
 				<tbody>
 					<tr data-th-each="product: ${productList}" style="text-align: center;">
-						<td ><a th:href="@{/product/productInfo(id=${product.id})}"><span th:text="${product.title}"></span></a></td>
+						<td ><a th:href="@{/product/productInfo(id=${product.id})}"><b><span th:text="${product.title}"></span></b></a></td>
 						<td th:text="${product.category}"></td>
 						<td th:text="${product.brand}"></td>
 						<td th:text="${product.listPrice}"></td>
