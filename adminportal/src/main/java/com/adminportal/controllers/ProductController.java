@@ -1,13 +1,17 @@
 package com.adminportal.controllers;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.models.Product;
 import com.adminportal.services.ProductService;
+import com.adminportal.utilities.ImageResizer;
+
 
 
 @Controller
@@ -41,15 +47,33 @@ public class ProductController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addProductPost(
 			@ModelAttribute("product") Product product, HttpServletRequest request 
-			)
+			) throws IOException
 	{ 
 		productService.save(product);
 
 		MultipartFile productImage = product.getProductImage();
+		
+		//1. Converting multipartfile to file
+		File convfile = new File(productImage.getOriginalFilename());
+		convfile.createNewFile();
+		FileOutputStream fos = new FileOutputStream(convfile);
+		fos.write(productImage.getBytes());
+		fos.close();
+		
+		//2. resize here
+		BufferedImage img = ImageIO.read(convfile);
+		BufferedImage resizedImage = ImageResizer.resize(img,300,300);
+		
+		//3. converting buffered image to array
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte bytes[];
+		ImageIO.write(resizedImage, "png", baos);
+		baos.flush();
+		bytes = baos.toByteArray();
+		baos.close();
 
 		try
 		{
-			byte bytes[] = productImage.getBytes();
 			String name=product.getId()+ ".png";
 			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/others/images/product/"+ name)));
 			stream.write(bytes);
