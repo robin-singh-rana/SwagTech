@@ -2,6 +2,7 @@ package com.robin.controllers;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -28,12 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robin.models.Product;
 import com.robin.models.User;
+import com.robin.models.UserShipping;
 import com.robin.models.security.PasswordResetToken;
 import com.robin.models.security.Role;
 import com.robin.models.security.UserRole;
 import com.robin.services.ProductService;
 import com.robin.services.UserSecurityService;
 import com.robin.services.UserService;
+import com.robin.utilities.IndiaConstants;
 import com.robin.utilities.MailConstructor;
 import com.robin.utilities.SecurityUtility;
 
@@ -237,6 +240,30 @@ public class HomeController {
 		
 		return "productDetail";
 		
+	}
+	
+	@RequestMapping("/profile")
+	public String profile(Model model, Principal principal)
+	{
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user",user);
+		
+		model.addAttribute("userPaymentList",user.getUserPaymentList());
+		model.addAttribute("userShippingList",user.getUserShippingList());
+		//model.addAttribute("orderList",user.getOrderList());
+		
+		UserShipping userShipping = new UserShipping();
+		model.addAttribute("userShipping",userShipping);
+		
+		model.addAttribute("listOfCreditCards",true);
+		model.addAttribute("listOfShippingAddresses",true);
+		
+		List<String> stateList = IndiaConstants.listOfINDStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList",stateList);
+		model.addAttribute("classActiveEdit",true);
+		
+		return "profile";
 	}
 	
 	
