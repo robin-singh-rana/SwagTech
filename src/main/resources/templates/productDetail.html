@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header">
+</head>
+<body>
+
+	<div th:replace="common/header :: main-header"></div>
+	<!-- product information container container-->
+	<div class="supercontainer"
+		style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: round; background-attachment: fixed; background-size: auto;">
+		<div class="container" style="padding-top: 25px;">
+
+			<!-- navigation buttons container-->
+			<div class="container">
+				<div class="row col-12"
+					style="margin-bottom: 25px; background: transparent;">
+					<div class="col-sm col-6">
+						<a style="box-shadow: 2px 0px 70px 0 white;"
+							class="btn btn-primary" th:href="@{/viewProducts}" role="button"><i
+							class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Go Back</a>
+					</div>
+				</div>
+			</div>
+	
+	<form th:action="@{/shoppingCart/addItem}" method="post">
+			<div class="row">
+
+				<!-- column 1(product image) -->
+				<div class="col" style="text-align: center;">
+					<img
+						style="box-shadow: 2px 0px 70px 0 blanchedalmond; background-color: white;"
+						th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'"
+						class="img-responsive" />
+					<h3 style="font-family: inherit; margin-top: 10px;"
+						th:text="${product.title}"></h3>
+
+				</div>
+
+				<!-- column 2(product description) -->
+				<div class="col" style="padding: 30px;">
+					<p>
+						<strong>Title: </strong><span th:text="${product.title}"></span>
+					</p>
+					<p>
+						<strong>Category: </strong><span th:text="${product.category}"></span>
+					</p>
+					<p>
+						<strong>Sub Category: </strong><span
+							style="text-transform: uppercase;"
+							th:text="${product.subcategory}"></span>
+					</p>
+					<p>
+						<strong>Brand: </strong><span th:text="${product.brand}"></span>
+					</p>
+
+					<p>
+						<strong>List Price: </strong>₹&nbsp;<span
+							th:text="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"
+							style="text-decoration: line-through; color: crimson;"></span>
+					</p>
+					<p>
+						<strong>Our Price: </strong>₹&nbsp; <span
+							th:text="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span>
+					</p>
+
+					<p>
+						<strong>Status: </strong><span style="text-transform: uppercase;"
+							th:text="${product.active}"></span>
+					</p>
+				</div>
+
+				<!-- column 3(Checkout) -->
+				<div class="col" style="text-align: center;">
+					<div class="panel panel-default" style="margin-top: 20px;">
+						<div class="panel-body"
+							style="border: 5px solid #007bff; border-radius: 25px;">
+							<div class="row" style="padding: 20px;">
+								<div class="col">
+									<h4>
+										Our Price: <span style="color: #db3208;">₹<span
+											th:text="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+									</h4>
+									<p>
+										List Price: <span style="text-decoration: line-through">₹<span
+											th:text="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+									</p>
+									<p>
+										You save: <span style="color: blue;">₹<span
+											th:text="${#numbers.formatDecimal((product.listPrice - product.ourPrice), 0, 'COMMA', 2, 'POINT' )}"></span></span>
+									</p>
+									<p>
+										<span>Qty: </span> <select name="qty"
+											style="color: black; border: solid 0px #e5e5e5; border-radius: 4px;">
+											<option th:each="qty : ${qtyList}" th:value="${qty}"
+												th:text="${qty}"></option>
+										</select>
+									</p>
+
+									<button type="submit" class="btn btn-warning"
+										style="color: black; border: 1px solid black;">Add to
+										Cart</button>
+								</div>
+								<!-- checkout button -->
+								<h4 th:if="${product.inStockNumber&gt;10}" style="color: green">In
+									Stock</h4>
+								<h4
+									th:if="${product.inStockNumber&lt;10 and product.inStockNumber&gt;0}"
+									style="color: green">
+									Only <span th:text="${product.inStockNumber}"> In Stock</span>
+								</h4>
+								<h4 th:if="${product.inStockNumber==0}" style="color: darkred;">Unavailable</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+
+
+		<!-- description container-->
+		<div class="container" style="margin-top: 20px;">
+			<div class="row">
+				<div class="col">
+					<h3 style="text-align: center;">
+						<b>Description:</b>
+					</h3>
+					<span style="text-align: center; background-color: none;"
+						th:utext="${product.description}"></span>
+				</div>
+
+			</div>
+		</div>
+
+		<div th:replace="common/header :: bottom-scripts"></div>
+	</div>
+	<div th:replace="common/footer :: shared-footer"></div>
+
+</body>
+</html>

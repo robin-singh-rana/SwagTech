@@ -45,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/newUser",
 			"/myaccount",
 			"/datatables/**",
-			"/viewProducts"
+			"/viewProducts",
+			"/productDetail"
 	};
 
 	@Override

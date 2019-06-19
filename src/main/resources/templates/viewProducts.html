@@ -37,12 +37,12 @@
 						<tbody>
 							<tr data-th-each="product : ${productList}"
 								style="text-align: center; vertical-align: middle;">
-								<td class="w-25" style="background-color: white;"><img
-									th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'" /></td>
+								<td class="w-25" style="background-color: white;"><a th:href="@{/productDetail?id=}+${product.id}"><img
+									th:src="#{adminPath}+@{/others/images/product/}+${product.id}+'.png'" /></a></td>
 								<td><span th:text="${product.category}"
 									style="font-weight: bold; color: #0e8ce4;"></span></td>
-								<td><span th:text="${product.title}"
-									style="font-weight: bold; color: #0e8ce4;"></span></td>
+								<td><a th:href="@{/productDetail?id=}+${product.id}"><span th:text="${product.title}"
+									style="font-weight: bold; color: #0e8ce4;"></span></a></td>
 								<td><span th:text="${product.brand}"
 									style="font-weight: bold; color: #0e8ce4;"></span></td>
 								<td>₹<span
