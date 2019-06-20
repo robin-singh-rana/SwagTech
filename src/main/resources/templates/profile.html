@@ -126,12 +126,12 @@
 										<ol class="breadcrumb">
 											<li class="breadcrumb-item active"><a
 												th:href="@{/listOfCreditCards}"
-												th:style="${listOfCreditCards}? 'color:red'">List of
-													Credit Cards</a></li>
+												th:style="${listOfCreditCards}? 'color:red'"><b>List of
+													Credit Cards</b></a></li>
 											<li class="breadcrumb-item active"><a
 												th:href="@{/addNewCreditCard}"
-												th:style="${addNewCreditCard}? 'color:red'">Add(Update)
-													Credit Card</a></li>
+												th:style="${addNewCreditCard}? 'color:red'"><b>Add
+													Credit Card</b></a></li>
 										</ol>
 
 										<div th:if="${listOfCreditCards}">
@@ -150,9 +150,7 @@
 																th:value="${userPayment.id}"
 																th:checked="${userPayment.defaultPayment}" /></td>
 															<td th:text="${userPayment.cardName}"></td>
-															<td><a
-																th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
-																	class="fas fa-pencil-alt"></i></a>
+															<td>
 																	 <a style="margin-left: 30px;"
 																th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
 																	style="color: red;" class="fa fa-times"></i></a></td>

@@ -36,6 +36,7 @@ import com.robin.models.security.PasswordResetToken;
 import com.robin.models.security.Role;
 import com.robin.models.security.UserRole;
 import com.robin.services.ProductService;
+import com.robin.services.UserPaymentService;
 import com.robin.services.UserSecurityService;
 import com.robin.services.UserService;
 import com.robin.utilities.IndiaConstants;
@@ -53,6 +54,9 @@ public class HomeController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private UserPaymentService userPaymentService;
 	
 	@Autowired
 	private JavaMailSender mailSender;
