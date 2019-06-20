@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robin.models.Product;
 import com.robin.models.User;
+import com.robin.models.UserBilling;
+import com.robin.models.UserPayment;
 import com.robin.models.UserShipping;
 import com.robin.models.security.PasswordResetToken;
 import com.robin.models.security.Role;
@@ -64,8 +66,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/myaccount")
-	public String account()
+	public String account(Model model)
 	{
+		model.addAttribute("classActiveSignup",true);
 		return "account";
 	}
 	
@@ -114,6 +117,7 @@ public class HomeController {
 		mailSender.send(newEmail);
 		
 		model.addAttribute("forgetPasswordEmailSent",true);
+		model.addAttribute("classActiveForgotPassword",true);
 		
 		return "account";
 	}
@@ -266,5 +270,86 @@ public class HomeController {
 		return "profile";
 	}
 	
+	@RequestMapping("/listOfCreditCards")
+	public String listOfCreditCards(Model model, Principal principal, HttpServletRequest request)
+	{
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user",user);
+		model.addAttribute("userPaymentList",user.getUserPaymentList());
+		model.addAttribute("userShippingList",user.getUserShippingList());
+		//model.addAttribute("orderList",user.orderList());
+		
+		model.addAttribute("listOfCreditCards",true);
+		model.addAttribute("classActiveBilling",true);
+		model.addAttribute("listOfShippingAddresses",true);
+		
+		return "profile";
+	}
+	
+	@RequestMapping("/listOfShippingAddresses")
+	public String listOfShippingAddresses(Model model, Principal principal, HttpServletRequest request)
+	{
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user",user);
+		model.addAttribute("userPaymentList",user.getUserPaymentList());
+		model.addAttribute("userShippingList",user.getUserShippingList());
+		//model.addAttribute("orderList",user.orderList());
+		
+		model.addAttribute("listOfCreditCards",true);
+		model.addAttribute("classActiveBilling",true);
+		model.addAttribute("listOfShippingAddresses",true);
+		
+		return "profile";
+	}
+	
+	@RequestMapping("/addNewCreditCard")
+	public String addNewCreditCard(Model model,Principal principal) 
+	{
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user",user);
+		
+		model.addAttribute("addNewCreditCard",true);
+		model.addAttribute("classActiveBilling",true);
+		model.addAttribute("listOfShippingAddresses",true);
+		
+		UserBilling userBilling = new UserBilling();
+		UserPayment userPayment = new UserPayment();
+		
+		model.addAttribute("userBilling",userBilling);
+		model.addAttribute("userPayment",userPayment);
+		
+		List<String> stateList = IndiaConstants.listOfINDStatesName;
+		Collections.sort(stateList);
+		model.addAttribute("stateList",stateList);
+		model.addAttribute("userPaymentList",user.getUserPaymentList());
+		model.addAttribute("userShippingList",user.getUserShippingList());
+		//model.addAttribute("orderList",user.orderList());
+		
+		return "profile";
+	}
+	
+	@RequestMapping("/addNewShippingAddress")
+	public String addNewShippingAddress(Model model,Principal principal) 
+	{
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user",user);
+		
+		model.addAttribute("addNewShippingAddress",true);
+		model.addAttribute("classActiveShipping",true);
+		model.addAttribute("listOfCreditCards",true);
+		
+		UserShipping userShipping = new UserShipping();
+		
+		model.addAttribute("userShipping",userShipping);
+		
+		List<String> stateList = IndiaConstants.listOfINDStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList",stateList);
+		model.addAttribute("userPaymentList",user.getUserPaymentList());
+		model.addAttribute("userShippingList",user.getUserShippingList());
+		//model.addAttribute("orderList",user.orderList());
+		
+		return "profile";
+	}
 	
 }

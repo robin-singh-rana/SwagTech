@@ -17,18 +17,18 @@
 				<div
 					class="col-9 col-sm-10 col-md-10 col-lg-9 offset-1 offset-sm-1 offset-md-1 offset-lg-1 ">
 					<ul class="nav nav-pills" role="tablist">
-						<li class="nav-item"><a class="nav-link active" href="#menu1"
+						<li class="nav-item"><a class="nav-link " th:classappend="${classActiveSignup}? active" href="#menu1"
 							data-toggle="pill">Create Account</a></li>
-						<li class="nav-item"><a class="nav-link" href="#menu2"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveLogin}? active" href="#menu2"
 							data-toggle="pill">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="#menu3"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveForgotPassword}? active" href="#menu3"
 							data-toggle="pill">Forgot Password</a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
 					<!-- tab pane 1 -->
-						<div id="menu1" class="tab-pane fade show active">
+						<div id="menu1" class="tab-pane fade" th:classappend="${classActiveSignup}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default">
 									<div class="panel-body"
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<!-- login -->
-						<div class="tab-pane fade" id="menu2" th:classappend="${classActiveLogin}? 'in active'">
+						<div class="tab-pane fade" id="menu2" th:classappend="${classActiveLogin}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default" style="border: none;">
 									<div class="panel-body"
@@ -98,7 +98,7 @@
 						
 						
 						<!-- forgot password -->
-						<div class="tab-pane fade" id="menu3">
+						<div class="tab-pane fade" id="menu3" th:classappend="${classActiveForgotPassword}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"

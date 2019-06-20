@@ -15,20 +15,21 @@
 			<div class="row" style="padding-top: 50px; margin-bottom: 30px;">
 				<div class="col-10 offset-1 col-sm-10  col-md-10 col-lg-10 ">
 					<ul class="nav nav-pills" role="tablist">
-						<li class="nav-item"><a class="nav-link active" href="#menu1"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveEdit}? active" href="#menu1"
 							data-toggle="pill">Edit</a></li>
-						<li class="nav-item"><a class="nav-link" href="#menu2"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveOrder}? active" href="#menu2"
 							data-toggle="pill">Orders</a></li>
-						<li class="nav-item"><a class="nav-link" href="#menu3"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveBilling}? active" href="#menu3"
 							data-toggle="pill">Billing</a></li>
-						<li class="nav-item"><a class="nav-link" href="#menu4"
+						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveShipping}? active" href="#menu4"
 							data-toggle="pill">Shipping</a></li>
 					</ul>
 
 					<div class="tab-content">
 
 						<!-- Tab pane 1 -->
-						<div id="menu1" class="tab-pane fade show active">
+						<div class="tab-pane fade" id="menu1"
+							th:classappend="${classActiveEdit}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default">
 									<div class="panel-body"
@@ -102,7 +103,7 @@
 
 						<!-- Tab pane 2-Order Information -->
 						<div class="tab-pane fade" id="menu2"
-							th:classappend="${classActiveEdit}? 'in active'">
+							th:classappend="${classActiveOrder}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default" style="border: none;">
 									<div class="panel-body"
@@ -113,14 +114,14 @@
 
 						<!-- Tab pane 3-Billing Information -->
 						<div class="tab-pane fade" id="menu3"
-							th:classappend="${classActiveEdit}? 'in active'">
+							th:classappend="${classActiveBilling}? 'show active'">
 							<div class="panel-group">
 								<div class="panel panel-default" style="border: none;">
 									<div class="panel-body"
 										style="background-color: #ededed; margin-top: 20px; margin-bottom: 80px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
 										<ol class="breadcrumb">
 											<li class="breadcrumb-item active"><a
-												th:href="@{/listOfCreditCard}"
+												th:href="@{/listOfCreditCards}"
 												th:style="${listOfCreditCards}? 'color:red'">List of
 													Credit Cards</a></li>
 											<li class="breadcrumb-item active"><a
@@ -140,7 +141,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr th:each="userPayment : ${userPaymentlist}">
+														<tr th:each="userPayment : ${userPaymentList}">
 															<td><input type="radio" name="defaultUserPaymentId"
 																th:value="${userPayment.id}"
 																th:checked="${userPayment.defaultPayment}" /></td>
@@ -154,6 +155,180 @@
 													</tbody>
 												</table>
 												<button class="btn btn-primary" type="submit">Save</button>
+											</form>
+										</div>
+
+										<div th:if="${addNewCreditCard}">
+											<form th:action="@{addNewCreditCard}" method="post">
+												<div class="bg-info" th:if="${updateUserPaymentInfo}">User
+													info updated.</div>
+
+												<input hidden="hidden" name="id"
+													th:value="${userPayment.id}" />
+
+												<div class="form-group">
+													<h5>* Give a name for your card:</h5>
+													<input type="text" class="form-control" id="cardName"
+														placeholder="Card Name" th:name="cardName"
+														required="required" th:value="${userPayment.cardName}" />
+												</div>
+
+												<!-- Billing Address -->
+												<hr />
+												<div class="form-group">
+													<h4>Billing Address</h4>
+												</div>
+												<div class="form-group">
+													<label for="billingName">* Name</label> <input type="text"
+														class="form-control" id="billingName"
+														placeholder="Receiver Name" th:name="userBillingName"
+														required="required"
+														th:value="${userBilling.userBillingName}" />
+												</div>
+												<div class="form-group">
+													<label for="billingAddress">* Street Address</label> <input
+														type="text" class="form-control" id="billingAddress"
+														placeholder="Street Address 1"
+														th:name="userBillingStreet1" required="required"
+														th:value="${userBilling.userBillingStreet1}" /> <input
+														type="text" class="form-control" id="billingAddress"
+														placeholder="Street Address 2"
+														th:name="userBillingStreet2"
+														th:value="${userBilling.userBillingStreet2}" />
+												</div>
+
+												<div class="row">
+													<div class="col-4">
+														<div class="form-group">
+															<label for="billingCity">* City</label> <input
+																type="text" class="form-control" id="billingCity"
+																placeholder="Billing city" th:name="userBillingCity"
+																required="required"
+																th:value="${userBilling.userBillingCity}" />
+														</div>
+													</div>
+													<div class="col-4">
+														<div class="form-group">
+															<label for="billingState">* State</label> <select
+																id="billingState" class="form-control"
+																th:name="userBillingState"
+																th:value="${userBilling.userBillingState}"
+																required="required">
+																<option value="" disabled="disabled">Please
+																	select an option</option>
+																<option th:each="state : ${stateList}"
+																	th:text="${state}"
+																	th:selected="(${userBilling.userBillingState}==${state})"></option>
+															</select>
+														</div>
+													</div>
+													<div class="col-4">
+														<div class="form-group">
+															<label for="billingZipcode">* Zipcode</label> <input
+																type="text" class="form-control" id="billingZipcode"
+																placeholder="Billing Zipcode"
+																th:name="userBillingZipcode" required="required"
+																th:value="${userBilling.userBillingZipcode}" />
+														</div>
+													</div>
+												</div>
+
+												<!-- Credit Card Information -->
+												<hr />
+												<div class="form-group">
+													<h4>Credit Card Information</h4>
+												</div>
+												<div class="row">
+													<div class="col-12">
+														<img src="/others/images/creditcard.png" class="img-responsive" /><br />
+														<div class="form-group">
+															<label for="cardType">* Select Card Type:</label> <select
+																class="form-control" id="cardType" th:name="type"
+																th:value="${userPayment.type}">
+																<option value="visa">Visa</option>
+																<option value="mastercard">Mastercard</option>
+																<option value="discover">Discover</option>
+																<option value="amex">American Express</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="cardHolder">* Card Holder Name:</label> <input
+																type="text" class="form-control" id="cardHolder"
+																required="required" placeHolder="Card Holder Name"
+																th:name="holderName"
+																th:value="${userPayment.holderName}" />
+														</div>
+														<div class="form-group">
+															<label for="cardNumber">* Card Number:</label>
+															<div class="input-group">
+																<input type="tel" class="form-control" id="cardNumber"
+																	required="required" placeHolder="Valid Card Number"
+																	th:name="cardNumber"
+																	th:value="${userPayment.cardNumber}" /> <span
+																	class="input-group-addon"><i
+																	class="fa fa-credit-card" aria-hidden="true"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-7">
+														<div class="form-group">
+															<label>* Expiration Date</label>
+															<div class="row">
+																<div class="col-6">
+																	<select class="form-control" name="expiryMonth"
+																		required="required"
+																		th:value="${userPayment.expiryMonth}">
+																		<option disabled="disabled">-- Month --</option>
+																		<option value="01">Jan (01)</option>
+																		<option value="02">Feb (02)</option>
+																		<option value="03">Mar (03)</option>
+																		<option value="04">Apr (04)</option>
+																		<option value="05">May (05)</option>
+																		<option value="06">June (06)</option>
+																		<option value="07">July (07)</option>
+																		<option value="08">Aug (08)</option>
+																		<option value="09">Sep (09)</option>
+																		<option value="10">Oct (10)</option>
+																		<option value="11">Nov (11)</option>
+																		<option value="12">Dec (12)</option>
+																	</select>
+																</div>
+																<div class="col-6">
+																	<select class="form-control" name="expiryYear"
+																		th:value="${userPayment.expiryYear}">
+																		<option disabled="disabled">-- Year --</option>
+																		<option value="19">2019</option>
+																		<option value="20">2020</option>
+																		<option value="21">2021</option>
+																		<option value="22">2022</option>
+																		<option value="23">2023</option>
+																		<option value="23">2024</option>
+																		<option value="23">2025</option>
+																		<option value="23">2026</option>
+																		<option value="23">2027</option>
+																		<option value="23">2028</option>
+																		<option value="23">2029</option>
+																		<option value="23">2030</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-5">
+														<div class="form-group">
+															<label for="cardCVC">CV Code</label> <input id="cardCVC"
+																type="tel" class="form-control" name="cvc"
+																placeholder="CVC" th:name="cvc"
+																th:value="${userPayment.cvc}" />
+														</div>
+													</div>
+												</div>
+												<hr />
+												<button type="submit" class="btn btn-primary btn-lg">Save
+													All</button>
 											</form>
 										</div>
 									</div>
