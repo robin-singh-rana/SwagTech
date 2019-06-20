@@ -15,13 +15,17 @@
 			<div class="row" style="padding-top: 50px; margin-bottom: 30px;">
 				<div class="col-10 offset-1 col-sm-10  col-md-10 col-lg-10 ">
 					<ul class="nav nav-pills" role="tablist">
-						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveEdit}? active" href="#menu1"
+						<li class="nav-item"><a class="nav-link"
+							th:classappend="${classActiveEdit}? active" href="#menu1"
 							data-toggle="pill">Edit</a></li>
-						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveOrder}? active" href="#menu2"
+						<li class="nav-item"><a class="nav-link"
+							th:classappend="${classActiveOrder}? active" href="#menu2"
 							data-toggle="pill">Orders</a></li>
-						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveBilling}? active" href="#menu3"
+						<li class="nav-item"><a class="nav-link"
+							th:classappend="${classActiveBilling}? active" href="#menu3"
 							data-toggle="pill">Billing</a></li>
-						<li class="nav-item"><a class="nav-link" th:classappend="${classActiveShipping}? active" href="#menu4"
+						<li class="nav-item"><a class="nav-link"
+							th:classappend="${classActiveShipping}? active" href="#menu4"
 							data-toggle="pill">Shipping</a></li>
 					</ul>
 
@@ -148,9 +152,10 @@
 															<td th:text="${userPayment.cardName}"></td>
 															<td><a
 																th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
-																	class="fa fa-pencil"></i></a> <a
+																	class="fas fa-pencil-alt"></i></a>
+																	 <a style="margin-left: 30px;"
 																th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
-																	class="fa fa-times"></i></a></td>
+																	style="color: red;" class="fa fa-times"></i></a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -159,7 +164,7 @@
 										</div>
 
 										<div th:if="${addNewCreditCard}">
-											<form th:action="@{addNewCreditCard}" method="post">
+											<form th:action="@{/addNewCreditCard}" method="post">
 												<div class="bg-info" th:if="${updateUserPaymentInfo}">User
 													info updated.</div>
 
@@ -240,7 +245,8 @@
 												</div>
 												<div class="row">
 													<div class="col-12">
-														<img src="/others/images/creditcard.png" class="img-responsive" /><br />
+														<img src="/others/images/creditcard.png"
+															class="img-responsive" /><br />
 														<div class="form-group">
 															<label for="cardType">* Select Card Type:</label> <select
 																class="form-control" id="cardType" th:name="type"
