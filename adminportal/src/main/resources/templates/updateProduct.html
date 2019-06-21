@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="common/header :: shared-header"></head>
-<body style="background-image:url(/others/images/banner_2_background.jpg); min-height:480px; background-repeat: round; background-attachment: scroll; background-size: auto;">
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: round; background-attachment: scroll; background-size: auto;">
 	<div th:replace="common/header::navbar"></div>
 
-	<div class="container" style="width:80%">
+	<div class="container" style="width: 80%">
 		<div class="panel-group" style="margin-bottom: 40px;">
 			<div class="panel panel-default" style="border: none;">
 				<div class="panel-body col-xs-12 col-md-12 col-lg-12"
@@ -15,8 +16,8 @@
 						<fieldset>
 							<legend class="center-block">Update Product Information:</legend>
 
-							<input hidden="hidden" name="id" th:value="${product.id}"/>
-						
+							<input hidden="hidden" name="id" th:value="${product.id}" />
+
 							<!--Category-->
 							<div class="form-group">
 								<label class="col-xs-2 control-label" for="category">Category:</label>
@@ -150,7 +151,8 @@
 								<label class="col-md-2 control-label" for="description">Description</label>
 								<div class="col-md-8">
 									<textarea name="description" rows="6" class="form-control"
-										id="description" th:value="${product.description}" th:text="${product.description}"
+										id="description" th:value="${product.description}"
+										th:text="${product.description}"
 										placeholder="Enter Description of the product."></textarea>
 									<span class="help-block">Description of the product.</span>
 								</div>
@@ -163,14 +165,15 @@
 								</div>
 								<div class="col-md-8">
 									<input id="productImage" type="file" name="productImage"
-										th:value="${product.productImage}" />
+										th:value="${product.productImage}" required/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-2"></div>
 								<div class="col-md-8">
-									<button type="submit" class="btn btn-success">Update Product</button>
+									<button type="submit" class="btn btn-success">Update
+										Product</button>
 									<a class="btn btn-danger" th:href="@{/product/productList}">Cancel</a>
 								</div>
 							</div>
@@ -181,6 +184,13 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("productImage").required;
+			document.getElementById("demo").innerHTML = x;
+		}
+	</script>
 
 	<div th:replace="common/footer :: shared-footer"></div>
 

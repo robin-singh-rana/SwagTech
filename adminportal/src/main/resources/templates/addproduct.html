@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="common/header :: shared-header"></head>
-<body style="background-image:url(/others/images/banner_2_background.jpg); min-height:480px; background-repeat: round; background-attachment: scroll; background-size: auto;">
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: round; background-attachment: scroll; background-size: auto;">
 	<div th:replace="common/header::navbar"></div>
 
-	<div class="container" style="width:80%">
+	<div class="container" style="width: 80%">
 		<div class="panel-group" style="margin-bottom: 40px;">
 			<div class="panel panel-default" style="border: none;">
-				<div class="panel-body col-xs-12 col-md-12 col-lg-12"
+				<div class="panel-body col-12 col-md-12 col-lg-12"
 					style="background-color: #ededed; margin-top: 40px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
 					<form th:action="@{/product/add}" method="post"
 						enctype="multipart/form-data">
@@ -17,7 +18,7 @@
 
 							<!--Category-->
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="category">Category:</label>
+								<label class="col-2 control-label" for="category">Category:</label>
 								<select th:value="${product.category}" class="form-control"
 									id="category" name="category">
 									<option value="" selected="selected" disabled="disabled">Please
@@ -45,7 +46,7 @@
 
 							<!--Sub-category-->
 							<div class="form-group">
-								<label class="col-xs-2 control-label" for="category">Sub
+								<label class="col-2 control-label" for="category">Sub
 									Category:</label>
 								<div class="col-xs-8">
 									<select th:value="${product.subcategory}" class="form-control"
@@ -161,14 +162,15 @@
 								</div>
 								<div class="col-md-8">
 									<input id="productImage" type="file" name="productImage"
-										th:value="${product.productImage}" />
+										th:value="${product.productImage}" required />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-2"></div>
 								<div class="col-md-8">
-									<button type="submit" class="btn btn-success">Add Product</button>
+									<button type="submit" class="btn btn-success">Add
+										Product</button>
 									<a class="btn btn-danger" th:href="@{/}">Cancel</a>
 								</div>
 							</div>
@@ -179,6 +181,13 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("productImage").required;
+			document.getElementById("demo").innerHTML = x;
+		}
+	</script>
 
 	<div th:replace="common/footer :: shared-footer"></div>
 

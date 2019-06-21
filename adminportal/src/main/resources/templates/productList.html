@@ -3,7 +3,7 @@
 
 <head th:replace="common/header :: shared-header"></head>
 <body
-	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px;background-repeat: round; background-attachment: fixed; background-size: auto;">
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 480px; background-repeat: round; background-attachment: fixed; background-size: auto;">
 
 	<div th:replace="common/header::navbar"></div>
 
@@ -11,7 +11,9 @@
 		<h1 style="text-align: center;">The Product List is as:</h1>
 
 		<div class="table-responsive">
-			<table id="productListTable" class="table table-bordered table-hover table-stripped" style="box-shadow: 12px 0px 14px 0 #212529; background-color: mintcream;">
+			<table id="productListTable"
+				class="table table-bordered table-hover table-stripped"
+				style="box-shadow: 12px 0px 14px 0 #212529; background-color: mintcream;">
 				<thead>
 					<tr style="text-align: center;">
 						<th>Title</th>
@@ -21,36 +23,38 @@
 						<th>Our Price</th>
 						<th>Active</th>
 						<th>Option</th>
-				</tr>
-			</thead>
+					</tr>
+				</thead>
 				<tbody>
-					<tr data-th-each="product: ${productList}" style="text-align: center;">
-						<td ><a th:href="@{/product/productInfo(id=${product.id})}"><b><span th:text="${product.title}"></span></b></a></td>
+					<tr data-th-each="product: ${productList}"
+						style="text-align: center;">
+						<td><a th:href="@{/product/productInfo(id=${product.id})}"><b><span
+									th:text="${product.title}"></span></b></a></td>
 						<td th:text="${product.category}"></td>
 						<td th:text="${product.brand}"></td>
 						<td th:text="${product.listPrice}"></td>
 						<td th:text="${product.ourPrice}"></td>
 						<td th:text="${product.active}"></td>
-						<td ><a style="text-decoration: none;" th:href="@{#}"><i class="fas fa-trash-alt"></i><button type="button" class="btn btn-danger">Delete</button></a></td>
-				</tr>
-			</tbody>
-		</table>
+						<td><a th:href="@{/product/deleteProduct(id=${product.id})}" style="text-decoration: none;"><i
+								class="fas fa-trash-alt"></i>
+								<button type="button" class="btn btn-danger">Delete</button></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div th:replace="common/footer :: shared-footer"></div>
+
 	</div>
-	
-	<div th:replace="common/footer :: shared-footer"></div>
-	
-</div>
 
 
 	<div th:replace="common/header:: bottom-scripts"></div>
-	
-	<script>
 
-	$(document).ready(function() {
-	    $('#productListTable').DataTable()
-	} );
-	
+	<script>
+		$(document).ready(function() {
+			$('#productListTable').DataTable()
+		});
 	</script>
-	
+
 </body>
 </html>

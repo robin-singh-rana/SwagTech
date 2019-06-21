@@ -156,5 +156,12 @@ public class ProductController {
 
 		return "redirect:/product/productInfo?id="+product.getId();
 	}
+	
+	@RequestMapping("/deleteProduct")
+	public String deleteProduct(@RequestParam("id") Long id)
+	{
+		productService.removeById(id);
+		return "redirect:productList";
+	}
 
 }
