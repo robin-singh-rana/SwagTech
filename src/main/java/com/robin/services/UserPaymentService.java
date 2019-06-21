@@ -18,4 +18,8 @@ public class UserPaymentService {
 	{
 		return userPaymentrepository.findById(id); 
 	}
+
+	public void removeById(Long creditCardId) {
+		userPaymentrepository.deleteById(creditCardId);
+	}
 }

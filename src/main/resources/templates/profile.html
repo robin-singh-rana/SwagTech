@@ -135,7 +135,6 @@
 										</ol>
 
 										<div th:if="${listOfCreditCards}">
-											<form th:action="@{/setDefaultPayment}" method="post">
 												<table class="table">
 													<thead>
 														<tr>
@@ -157,8 +156,6 @@
 														</tr>
 													</tbody>
 												</table>
-												<button class="btn btn-primary" type="submit">Save</button>
-											</form>
 										</div>
 
 										<div th:if="${addNewCreditCard}">
