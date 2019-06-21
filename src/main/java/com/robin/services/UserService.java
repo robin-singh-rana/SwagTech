@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.robin.models.User;
 import com.robin.models.UserBilling;
 import com.robin.models.UserPayment;
+import com.robin.models.UserShipping;
 import com.robin.models.security.PasswordResetToken;
 import com.robin.models.security.UserRole;
 import com.robin.repositories.PasswordResetTokenRepository;
@@ -90,6 +91,13 @@ public class UserService {
 		
 		userBilling.setUserPayment(userPayment);
 		user.getUserPaymentList().add(userPayment);
+		save(user);
+	}
+
+	public void updateUserShipping(UserShipping userShipping, User user) {
+		userShipping.setUser(user);
+		userShipping.setUserShippingDefault(true);
+		user.getUserShippingList().add(userShipping);
 		save(user);
 	}
 	
