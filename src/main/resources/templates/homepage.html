@@ -90,9 +90,9 @@
 										class="cart_container d-flex flex-row align-items-center justify-content-end">
 										<div class="cart_content">
 											<div class="cart_text">
-												<a sec:authorize="isAnonymous()" th:href="@{/myaccount}"><i class="fa fa-user fa-3x"
-													aria-hidden="true" style="text-shadow: 3px 3px 16px cyan"></i>
-													My Account</a>
+												<a sec:authorize="isAnonymous()" th:href="@{/myaccount}"><i
+													class="fa fa-user fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i> My Account</a>
 											</div>
 										</div>
 									</div>
@@ -231,14 +231,15 @@
 
 		<div class="banner">
 			<div class="banner_background">
-				<video style="width: 100%; min-height: 100%;" loop muted autoplay
-					src="/others/videos/background.mp4" type="video/mp4"></video>
+				<video id="myVideo" style="width: 100%; min-height: 100%;" loop
+					muted autoplay src="/others/videos/background.mp4"
+					type="video/mp4; codecs=&quot;avc1.4D401E, mp4a.40.2&quot;"></video>
 			</div>
 			<div class="container fill_height">
 				<div class="row fill_height">
 					<div class="col-lg-5 offset-lg-4 fill_height">
 						<div class="banner_content">
-							<h1 class="banner_text">
+							<h1 class="banner_text typewrite">
 								The New <br /> Era Of Technology <br /> Is Here
 							</h1>
 							<div class="button banner_button">
@@ -332,10 +333,10 @@
 						<div class="popular_categories_title">Popular Categories</div>
 						<div class="popular_categories_slider_nav">
 							<div class="popular_categories_prev popular_categories_nav">
-								<i class="fas fa-angle-left ml-auto" style="color:black;"></i>
+								<i class="fas fa-angle-left ml-auto" style="color: black;"></i>
 							</div>
-							<div class="popular_categories_next popular_categories_nav" >
-								<i class="fas fa-angle-right ml-auto" style="color:black;"></i>
+							<div class="popular_categories_next popular_categories_nav">
+								<i class="fas fa-angle-right ml-auto" style="color: black;"></i>
 							</div>
 						</div>
 						<div class="popular_categories_link">
@@ -587,7 +588,6 @@
 
 
 	<div th:replace="common/header :: bottom-scripts"></div>
-
 
 </body>
 
