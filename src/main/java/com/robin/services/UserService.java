@@ -1,12 +1,15 @@
 package com.robin.services;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.robin.models.ShoppingCart;
 import com.robin.models.User;
 import com.robin.models.UserBilling;
 import com.robin.models.UserPayment;
@@ -52,6 +55,7 @@ public class UserService {
 		return userRepository.findByEmail(email); 
 	}
 	
+	// as there is transaction involved in db
 	public User createUser(User user, Set<UserRole> userRoles) throws Exception
 	{
 		User localUser = userRepository.findByUsername(user.getUsername());
@@ -71,6 +75,12 @@ public class UserService {
 		}
 		
 		user.getUserRoles().addAll(userRoles);
+		
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setUser(user);
+		user.setShoppingCart(shoppingCart);
+		user.setUserShippingList(new ArrayList<UserShipping>());
+		user.setUserPaymentList(new ArrayList<UserPayment>());
 		
 		localUser = userRepository.save(user);
 		
