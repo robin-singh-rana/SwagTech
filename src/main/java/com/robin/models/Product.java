@@ -1,13 +1,18 @@
 package com.robin.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product {
@@ -30,6 +35,10 @@ public class Product {
 	@Transient //i.e wont be stored in db
 	private MultipartFile productImage;
 
+	@OneToMany(mappedBy = "product")
+	@JsonIgnore
+	private List<ProductToCartItem> productToCartItem;
+	
 	public Long getId() {
 		return id;
 	}
@@ -116,6 +125,14 @@ public class Product {
 
 	public void setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
+	}
+
+	public List<ProductToCartItem> getProductToCartItem() {
+		return productToCartItem;
+	}
+
+	public void setProductToCartItem(List<ProductToCartItem> productToCartItem) {
+		this.productToCartItem = productToCartItem;
 	}
 	
 }
