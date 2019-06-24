@@ -24,6 +24,7 @@
 			</div>
 	
 	<form th:action="@{/shoppingCart/addItem}" method="post">
+	<input hidden="hidden" th:field="*{product.id}" />
 			<div class="row">
 
 				<!-- column 1(product image) -->

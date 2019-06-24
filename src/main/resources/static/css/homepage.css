@@ -1663,7 +1663,7 @@ select option
   border-right: .0em solid; /* The typwriter cursor */
   white-space: normal; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  letter-spacing: .1em; /* Adjust as needed */
   animation: 
     typing 3s steps(40, end),
     blink-caret .75s step-end infinite;
