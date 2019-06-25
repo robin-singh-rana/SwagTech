@@ -100,10 +100,4 @@ public class ShoppingCartController {
 		return "redirect:/shoppingCart/cart";
 	}
 
-	@RequestMapping("/check")
-	public String checkout()
-	{
-		return "checkout";
-	}
-	
 }
