@@ -2,6 +2,7 @@ package com.robin.services;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,16 @@ public class CartItemService {
 		productToCartItemRepository.save(productToCartItem);
 		
 		return cartItem;
+	}
+
+	public Optional<CartItem> findById(Long cartItemId) {
+		return cartItemRepository.findById(cartItemId);
+	}
+
+	public void removeCartItem(Optional<CartItem> optional) {
+		CartItem cartItem = optional.get();
+		productToCartItemRepository.deleteByCartItem(cartItem);
+		cartItemRepository.delete(cartItem);
 	}
 	
 }

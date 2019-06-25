@@ -48,15 +48,14 @@
 							<h4>Price</h4>
 						</div>
 						<div class="col-2 text-left">
-							<h4>Qty</h4>
+							<h4>Quantity</h4>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<!--**************** display products in cart ****************-->
-			<div class="container"
-				style="margin-top: 10px; margin-bottom: 10px;"
+			<div class="container" style="margin-top: 10px; margin-bottom: 10px;"
 				th:each="cartItem : ${cartItemList}">
 				<form th:action="@{/shoppingCart/updateCartItem}" method="post">
 					<hr
@@ -91,9 +90,10 @@
 
 						</div>
 
-						<div class="col-2" style="padding:10px;">
+						<div class="col-2" style="padding: 10px;">
 							<h5 style="color: #db3208; font-size: large;">
-								₹<span th:text="${#numbers.formatDecimal((cartItem.product.ourPrice), 0, 'COMMA', 2, 'POINT' )}"
+								₹<span
+									th:text="${#numbers.formatDecimal((cartItem.product.ourPrice), 0, 'COMMA', 2, 'POINT' )}"
 									th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 							</h5>
 						</div>
@@ -103,7 +103,7 @@
 								th:id="${cartItem.id}" th:name="qty"
 								th:disabled="${cartItem.product.inStockNumber==0}"
 								class="form-control cartItemQty" th:value="${cartItem.qty}" />
-							<button th:id="'update-item-'+${cartItem.id}" type="submit"
+							<button style="display: none;" th:id="'update-item-'+${cartItem.id}" type="submit"
 								class="btn btn-warning btn-sm">Update</button>
 
 						</div>
@@ -114,7 +114,7 @@
 			<hr
 				style="height: 2px; border: none; color: #333; background-color: #333;" />
 			<!-- total price -->
-			<div class="row">
+			<div class="row" style="bottom:20px; position:absolute; right:20px;">
 				<h4 class="col-12 text-right">
 					<strong style="font-size: large;">Total Price (<span
 						th:text="${#lists.size(cartItemList)}"></span> items):
@@ -127,6 +127,15 @@
 		<div th:replace="common/footer :: shared-footer"></div>
 
 		<div th:replace="common/header :: bottom-scripts"></div>
+		
+		<script>
+			$(document).ready(function(){
+				$(".cartItemQty").on('change',function(){
+					var id=this.id;
+					$('#update-item-'+id).css('display','inline-block');
+				})
+			});
+		</script>
 
 	</div>
 </body>
