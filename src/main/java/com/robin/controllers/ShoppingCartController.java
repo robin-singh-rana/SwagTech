@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -99,4 +100,10 @@ public class ShoppingCartController {
 		return "redirect:/shoppingCart/cart";
 	}
 
+	@RequestMapping("/check")
+	public String checkout()
+	{
+		return "checkout";
+	}
+	
 }
