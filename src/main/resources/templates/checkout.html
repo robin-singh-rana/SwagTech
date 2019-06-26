@@ -10,13 +10,14 @@
 
 		<!-- Header -->
 		<div th:replace="common/header :: main-header"></div>
+		
 		<div class="container-fluid"
 			style="background-image: url(/others/images/banner_2_background.jpg); min-height: 500px; background-repeat: no-repeat; background-position: center; background-attachment: fixed; background-size: cover;">
-			<div class="row" style="padding-top: 20px;">
+			<div style="padding-top: 20px; padding-bottom: 20px;">
 				<form th:action="@{/checkout}" method="post">
 					<div class="row">
 						<!-- Left Panel -->
-						<div class="col-4 offset-1">
+						<div class="col-11 offset-1 col-sm-4 col-md-4 col-lg-4">
 							<div class="panel panel-default" style="margin-top: 50px;">
 								<div class="panel-body"
 									style="border: 4px solid #007bff; border-radius: 25px; padding: 10px; box-shadow: 2px 30px 40px 0 #212529;">
@@ -24,7 +25,8 @@
 									<div class="row">
 										<div class="col-7 text-left">Total before tax:</div>
 										<div class="col-5 text-right">
-											₹<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 'COMMA', 2, 'POINT')}"></span>
+											₹<span
+												th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 'COMMA', 2, 'POINT')}"></span>
 										</div>
 									</div>
 									<div class="row">
@@ -37,12 +39,12 @@
 									<hr
 										style="height: 2px; border: none; color: #333; background-color: #333;" />
 									<div class="row">
-										<div class="col-6 text-left">
+										<div class="col-5 col-sm-6 col-md-6 col-lg-6 text-left">
 											<h3 style="color: darkred;">
 												<strong>Order Total: </strong>
 											</h3>
 										</div>
-										<div class="col-6 text-right">
+										<div class="col-5 col-sm-6 col-md-6 col-lg-6 text-right">
 											<h3>
 												<strong style="color: darkred;">₹<span
 													th:with="total=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.06}"
@@ -50,7 +52,7 @@
 											</h3>
 										</div>
 									</div>
-									<div class="panel-footer">Shipping and handling haven't
+									<div class="panel-footer">Shipping and handling aren't
 										applied.</div>
 									<button type="submit" class="btn btn-warning btn-block">Place
 										your order</button>
@@ -62,8 +64,9 @@
 							</div>
 						</div>
 
-						<!-- Checkout Info -->
-						<div class="col-7">
+
+						<!-- Checkout Info column-2 -->
+						<div class="col-11 offset-1 col-sm-7 col-md-7 col-lg-7 offset-sm-0 offset-md-0 offset-lg-0">
 							<div th:if="${missingRequiredField}">
 								<h5 class="alert alert-warning">There are some fields
 									missing. Field with * is required.</h5>
@@ -75,13 +78,16 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#shippingInfo"> 1. Shipping Address </a>
+											<a data-toggle="collapse" href="#shippingInfo">
+												<button type="button" class="btn btn-primary btn-sm">1. Shipping Address</button>
+											</a>
 										</h4>
 									</div>
-									<div id="shippingInfo" class="panel-collapse collapse"
+									<div id="shippingInfo" class="collapse show"
+										data-parent="#accordion"
 										th:classappend="${classActiveShipping}? 'show active'">
-										<div class="panel-body">
+										<div class="panel-body"
+											style="border: 4px solid #007bff; border-radius: 25px;box-shadow: 2px 30px 40px 0 #212529; padding: 10px; width: 90%;">
 											<table class="table" th:if="${not emptyShippingList}">
 												<thead>
 													<tr>
@@ -156,24 +162,26 @@
 													</div>
 												</div>
 											</div>
-											<a data-toggle="collapse" data-parent="#accordion"
-												class="btn btn-warning pull-right" href="#paymentInfo">Next</a>
+											<a data-toggle="collapse" class="btn btn-warning btn-sm"
+												href="#paymentInfo">Next</a>
 										</div>
 									</div>
 								</div>
 
 								<!-- Payment Information -->
-								<div class="panel panel-default">
+								<div class="panel panel-default" style="margin-top: 10px;">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#paymentInfo"> 2. Payment Information </a>
+											<a data-toggle="collapse" href="#paymentInfo">
+											<button type="button" class="btn btn-primary btn-sm"> 2. Payment
+												Information </button></a>
 										</h4>
 									</div>
 
-									<div id="paymentInfo" class="panel-collapse collapse"
-										th:classappend="${classActivePayment}? 'in'">
-										<div class="panel-body">
+									<div id="paymentInfo" class="collapse" data-parent="#accordion"
+										th:classappend="${classActivePayment}? 'show active'">
+										<div class="panel-body"
+											style="border: 4px solid #007bff; border-radius: 25px; padding: 10px; box-shadow: 2px 30px 40px 0 #212529; width: 90%;">
 											<table class="table" th:if="${not emptyPaymentList}">
 												<thead>
 													<tr>
@@ -342,21 +350,23 @@
 											</div>
 
 											<a data-toggle="collapse" data-parent="#accordion"
-												class="btn btn-warning pull-right" href="#reviewItems">Next</a>
+												class="btn btn-warning btn-sm" href="#reviewItems">Next</a>
 										</div>
 									</div>
 								</div>
 
 								<!-- 3. Review Items and Shipping -->
-								<div class="panel panel-default">
+								<div class="panel panel-default" style="margin-top: 10px;">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion"
-												href="#reviewItems"> 3. Review Items and Shipping </a>
+											<a data-toggle="collapse" href="#reviewItems">
+											<button type="button" class="btn btn-primary btn-sm"> 3. Review
+												Items and Shipping</button> </a>
 										</h4>
 									</div>
-									<div id="reviewItems" class="panel-collapse collapse">
-										<div class="panel-body">
+									<div id="reviewItems" class="collapse" data-parent="#accordion">
+										<div class="panel-body"
+											style="border: 4px solid #007bff; border-radius: 25px; padding: 10px; width: 90%;box-shadow: 2px 30px 40px 0 #212529;">
 											<h4>Choose your shipping method:</h4>
 											<div class="radio">
 												<label> <input type="radio" name="shippingMethod"
@@ -371,28 +381,30 @@
 											</div>
 
 											<div class="row">
-												<div class="col-8">
+												<div class="col-4 col-sm-8 col-md-8 col-lg-8">
 													<h4>Products</h4>
 												</div>
-												<div class="col-2">
+												<div class="col-3 col-sm-2 col-md-2 col-lg-2">
 													<h4>Price</h4>
 												</div>
-												<div class="col-2">
+												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 													<h4>Quantity</h4>
 												</div>
 											</div>
-
+											<hr
+												style="height: 2px; border: none; color: #333; background-color: #333;" />
 											<!-- display products in cart -->
 											<div class="row" th:each="cartItem : ${cartItemList}">
-												<hr />
-												<div class="col-2">
+												<hr
+													style="height: 2px; border: none; color: #333; background-color: #333;" />
+												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 													<a th:href="@{/productDetail(id=${cartItem.product.id})}">
 														<img class="img-responsive shelf-product"
 														th:src="#{adminPath}+@{/others/images/product/}+${cartItem.product.id}+'.png'"
 														style="width: 70px;" />
 													</a>
 												</div>
-												<div class="col-6">
+												<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 													<div style="margin-left: 50px;">
 														<a th:href="@{/productDetail?id=}+${cartItem.product.id}"><h4
 																th:text="${cartItem.product.title}"></h4></a>
@@ -407,34 +419,35 @@
 														<p th:if="${cartItem.product.inStockNumber==0}"
 															style="color: darkred;">Product Unavailable</p>
 														<a
-															th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a>
+															th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
 													</div>
 												</div>
 
-												<div class="col-2">
+												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 													<h5 style="color: #db3208; font-size: large;">
-														₹<span th:text="${cartItem.product.ourPrice}"
+														₹<span th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
 															th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 													</h5>
 												</div>
 
-												<div class="col-2">
-													<h5 style="font-size: large;" th:text="${cartItem.qty}"></h5>
+												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+													<h5 style="font-size: large; text-align: center;" th:text="${cartItem.qty}"></h5>
 												</div>
 
 											</div>
 
-											<hr />
+											<hr
+												style="height: 2px; border: none; color: #333; background-color: #333;" />
 											<h4 class="col-12 text-right">
 												<strong style="font-size: large;">Order Total (<span
 													th:text="${#lists.size(cartItemList)}"></span> items):
 												</strong> <span style="color: #db3208; font-szie: large;">₹<span
-													th:text="${shoppingCart.grandTotal}"></span></span>
+												 th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 'COMMA', 2, 'POINT')}"></span></span>
 											</h4>
-											<br /> <br />
+											<br />
 											<button type="submit" class="btn btn-warning btn-block">Place
 												your order</button>
-											<p style="font-size: smaller;">
+											<p style="font-size: smaller; text-align: center;">
 												By placing your order, you agree to SwagTech's <a href="#">privacy</a>
 												notice and <a href="#">conditions</a> of use.
 											</p>
