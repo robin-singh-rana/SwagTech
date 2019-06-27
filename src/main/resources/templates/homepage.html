@@ -39,7 +39,7 @@
 					<div class="row">
 
 						<!-- Logo -->
-						<div class="col-lg-2 col-sm-2 col-2">
+						<div class="col-lg-2 col-sm-3 col-3 order-1">
 							<div class="logo_container">
 								<div class="logo">
 									<a th:href="@{/}"><img src="/others/images/logo.png" alt=""></a>
@@ -49,7 +49,7 @@
 
 						<!-- Search -->
 						<div
-							class="col-lg-6 col-6 col-sm-6 col-md-6 text-left text-sm-left text-md-left text-lg-left text-right">
+							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
@@ -66,13 +66,14 @@
 														<li><a class="clc" href="#">Computers</a></li>
 														<li><a class="clc" href="#">Laptops</a></li>
 														<li><a class="clc" href="#">Cameras</a></li>
+														<li><a class="clc" href="#">Hardware</a></li>
 														<li><a class="clc" href="#">Smartphones</a></li>
 													</ul>
 												</div>
 											</div>
 											<button type="submit" class="header_search_button trans_300"
 												value="Submit">
-												<i class="fa fa-search fa-lg" aria-hidden="true"></i>
+												<i class="fa fa-search fa-lg"></i>
 											</button>
 										</form>
 									</div>
@@ -80,34 +81,31 @@
 							</div>
 						</div>
 
+
 						<!-- Upper Triggers -->
-						<div class="col-lg-4 col-4 col-sm-4 col-md-4 col-lg-4 text-right">
+						<div
+							class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 							<div
 								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 								<!-- My-Account Anonymous-->
-								<div class="cart">
-									<div
-										class="cart_container d-flex flex-row align-items-center justify-content-end">
-										<div class="cart_content">
-											<div class="cart_text" style="text-align: center;">
-												<a sec:authorize="isAnonymous()" th:href="@{/login}"><i
-													class="fa fa-user fa-3x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
-											</div>
+								<div
+									class="wishlist d-flex flex-row align-items-center justify-content-end">
+									<div class="wishlist_content">
+										<div class="wishlist_count" style="text-align: center;">
+											<a sec:authorize="isAnonymous()" th:href="@{/login}"><i
+												class="fa fa-user fa-2x" aria-hidden="true"
+												style="text-shadow: 3px 3px 16px cyan; "></i><span style="color:black; font-weight: bolder;">Account</span></a>
 										</div>
 									</div>
 								</div>
-
 								<!-- My-Account Logged-IN -->
-								<div class="cart">
-									<div
-										class="cart_container d-flex flex-row align-items-center justify-content-end">
-										<div class="cart_content">
-											<div class="cart_text" style="text-align: center;">
-												<a sec:authorize="isAuthenticated()" th:href="@{/profile}"><i
-													class="fa fa-user fa-3x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
-											</div>
+								<div
+									class="wishlist d-flex flex-row align-items-center justify-content-end">
+									<div class="wishlist_content">
+										<div class="wishlist_count" style="text-align: center;">
+											<a sec:authorize="isAuthenticated()" th:href="@{/profile}"><i
+												class="fa fa-user fa-2x" aria-hidden="true"
+												style="text-shadow: 3px 3px 16px cyan;"></i><span style="color:black; font-weight: bolder;">Account</span></a>
 										</div>
 									</div>
 								</div>
@@ -116,10 +114,10 @@
 									<div
 										class="cart_container d-flex flex-row align-items-center justify-content-end">
 										<div class="cart_content">
-											<div class="cart_text" style="text-align: center;">
+											<div class="cart_price" style="text-align: center;">
 												<a th:href="@{/shoppingCart/cart}"><i
-													class="fas fa-shopping-cart fa-3x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan"></i>Cart</a>
+													class="fas fa-shopping-cart fa-2x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i><span style="color:black; font-weight: bolder;">Cart</span></a>
 											</div>
 										</div>
 									</div>
@@ -129,10 +127,9 @@
 									<div
 										class="cart_container d-flex flex-row align-items-center justify-content-end">
 										<div class="cart_content">
-											<div class="cart_text" style="text-align: center;">
-												<a th:href="@{/logout}"><i
-													class="fas fa-power-off fa-3x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan"></i>Logout</a>
+											<div class="cart_price" style="text-align: center;">
+												<a th:href="@{/logout}"><i class="fas fa-power-off fa-2x"
+													aria-hidden="true" style="text-shadow: 3px 3px 16px cyan"></i><span style="color:black; font-weight: bolder;">Logout</span></a>
 											</div>
 										</div>
 									</div>
