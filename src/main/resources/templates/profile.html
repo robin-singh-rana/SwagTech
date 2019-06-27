@@ -66,8 +66,8 @@
 											</div>
 											<div class="form-group">
 												<label for="currentPassword">Current Password:</label><input
-													type="text" class="form-control" id="currentPassword"
-													name="currentPassword" th:value="${currentPassword}" />
+													type="text" class="form-control" id="password"
+													name="password" th:value="${currentPassword}" />
 											</div>
 											<p style="color: #828282">Enter your current password to
 												change the email address or password.</p>
@@ -84,20 +84,21 @@
 												certain notification.</p>
 
 											<div class="form-group">
-												<label for="txtNewPassword">Password</label> <input
-													type="password" class="form-control" id="txtNewPassword"
+												<label for="textNewPassword">Password</label>&nbsp;<span id="checkPasswordMatch" style="color: red;"></span> 
+												<input
+													type="password" class="form-control" id="textNewPassword"
 													name="newPassword" />
 											</div>
 
 											<div class="form-group">
-												<label for="txtConfirmPassword">Confirm Password</label><input
+												<label for="textConfirmPassword">Confirm Password</label><input
 													type="password" class="form-control"
-													id="txtConfirmPassword" />
+													id="textConfirmPassword" />
 											</div>
 											<p style="color: #828282">To change the current user
 												password, enter the new password in both fields.</p>
 
-											<button type="submit" class="btn btn-primary">Save
+											<button id="updateUserInfoButton" type="submit" class="btn btn-primary">Save
 												Account</button>
 										</form>
 									</div>
@@ -466,8 +467,30 @@
 		</div>
 
 		<div th:replace="common/footer :: shared-footer"></div>
-
 		<div th:replace="common/header :: bottom-scripts"></div>
+		<!-- password comparater b/w password and confirmPassword -->
+		<script>
+			function checkPasswordMatch(){
+				var password = $("#textNewPassword").val();
+				var confirmPassword = $("#textConfirmPassword").val();
+				if(passowrd == "" && confirmPassword =="")
+					{
+						$("#checkPasswordMatch").html("");
+						$("#updateUserInfoButton").prop('disabled',false);
+					}else
+						{
+							if(password != confirmPassword)
+								{
+								 $("#checkPasswordMatch").html("Password do not match!");
+								 $("#updateUserInfoButton").prop('disabled',true);
+								}
+							else {
+								 $("#checkPasswordMatch").html("Password Match!");
+								 $("#updateUserInfoButton").prop('disabled',false);
+								}
+						}
+			}
+		</script>
 	</div>
 </body>
 

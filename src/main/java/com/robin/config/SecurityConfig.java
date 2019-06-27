@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/myaccount",
 			"/datatables/**",
 			"/viewProducts",
-			"/productDetail"
+			"/productDetail",
+			"/images/**"
 	};
 
 	@Override
@@ -63,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.csrf().disable().cors().disable()
 		
 		.formLogin().failureUrl("/login?error")
-			/*.defaultSuccessUrl("/")*/   // if failed to login then redirect to the same login page along with param as error
+			.defaultSuccessUrl("/")   // if failed to login then redirect to the same login page along with param as error
 			.loginPage("/login").permitAll()							 // now check if that param.error != null i.e there is error and then print error in login.html pag
 			.and()
 			

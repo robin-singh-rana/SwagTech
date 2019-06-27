@@ -20,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,7 +59,7 @@ public class HomeController {
 
 	@Autowired
 	private UserPaymentService userPaymentService;
-	
+
 	@Autowired
 	private UserShippingService userShippingService;
 
@@ -220,6 +221,74 @@ public class HomeController {
 		return "profile";
 	}
 
+	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+	public String updateUserInfo(
+			@ModelAttribute("user") User user,
+			@ModelAttribute("newPassword") String newPassword,
+			Model model) throws Exception
+	{
+		Optional<User> currentUser1 = userService.findById(user.getId());
+
+		User currentUser = currentUser1.get();
+		
+		if(currentUser == null)
+		{
+			throw new Exception("User not Found");
+		}
+
+		//check email already exists or not
+		if(userService.findByEmail(user.getEmail()) != null) //i.e email already exists
+		{
+			if(userService.findByEmail(user.getEmail()).getId()!= currentUser.getId())
+			{
+				model.addAttribute("emailExists",true);
+				return "profile";
+			}
+		}
+
+		//check username already exists or not
+		if(userService.findByUsername(user.getUsername()) != null) //i.e email already exists
+		{
+			if(userService.findByUsername(user.getUsername()).getId()!= currentUser.getId())
+			{
+				model.addAttribute("usernameExists",true);
+				return "profile";
+			}
+		}
+		
+		//updating password
+		if(newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")) //new password is not empty
+		{
+			BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+			String dbpassword = currentUser.getPassword();
+			if(passwordEncoder.matches(user.getPassword(),dbpassword)) {
+				currentUser.setPassword(passwordEncoder.encode(newPassword));
+			}else
+			{
+				model.addAttribute("incorrectPassword",true);
+				return "profile";
+			}
+		}
+		
+		currentUser.setFirstname(user.getFirstname());
+		currentUser.setLastname(user.getLastname());
+		currentUser.setUsername(user.getUsername());
+		currentUser.setEmail(user.getEmail());
+		
+		userService.save(currentUser);
+		
+		model.addAttribute("updateSuccess",true);
+		model.addAttribute("user",currentUser);
+		model.addAttribute("classActiveEdit",true);
+		
+		//set the current session with new user
+		UserDetails userDetails = userSecurityService.loadUserByUsername(currentUser.getUsername());
+		
+		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		return "redirect:/profile";		
+	}
 
 	@RequestMapping("/viewProducts")
 	public String viewProducts(Model model)
@@ -338,7 +407,7 @@ public class HomeController {
 
 		return "profile";
 	}
-	
+
 	@RequestMapping("/removeCreditCard")
 	public String removeCreditCard(
 			@ModelAttribute("id") Long creditCardId, Principal principal, Model model)
@@ -421,7 +490,7 @@ public class HomeController {
 
 		return "profile";
 	}
-	
+
 	@RequestMapping("/removeUserShipping")
 	public String removeUserShipping(
 			@ModelAttribute("id") Long userShippingId, Principal principal, Model model)
@@ -445,5 +514,5 @@ public class HomeController {
 
 		return "profile";
 	}
-	
+
 }

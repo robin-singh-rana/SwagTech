@@ -1,14 +1,13 @@
 package com.robin.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.robin.models.ShoppingCart;
 import com.robin.models.User;
 import com.robin.models.UserBilling;
@@ -109,6 +108,10 @@ public class UserService {
 		userShipping.setUserShippingDefault(true);
 		user.getUserShippingList().add(userShipping);
 		save(user);
+	}
+
+	public Optional<User> findById(Long id) {
+		return userRepository.findById(id);
 	}
 	
 }
