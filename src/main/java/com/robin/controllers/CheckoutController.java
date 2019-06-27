@@ -32,6 +32,7 @@ import com.robin.services.ShippingAddressService;
 import com.robin.services.ShoppingCartService;
 import com.robin.services.UserService;
 import com.robin.utilities.IndiaConstants;
+import com.robin.utilities.MailConstructor;
 
 @Controller
 public class CheckoutController {
@@ -43,6 +44,9 @@ public class CheckoutController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private MailConstructor mailConstructor;
 	
 	@Autowired
 	private UserService userService;
@@ -137,7 +141,7 @@ public class CheckoutController {
 		model.addAttribute("shippingAddress",shippingAddress);
 		model.addAttribute("payment",payment);
 		model.addAttribute("cartItemList",cartItemList);
-		model.addAttribute("shoppingCart",user.getShoppingCart());
+		model.addAttribute("shoppingCart",shoppingCart);
 
 		List<String> stateList = IndiaConstants.listOfINDStatesCode;
 		Collections.sort(stateList);

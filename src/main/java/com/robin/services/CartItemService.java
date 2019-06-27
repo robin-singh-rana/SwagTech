@@ -81,5 +81,9 @@ public class CartItemService {
 		productToCartItemRepository.deleteByCartItem(cartItem);
 		cartItemRepository.delete(cartItem);
 	}
+
+	public CartItem save(CartItem cartItem) {
+		return cartItemRepository.save(cartItem);
+	}
 	
 }
