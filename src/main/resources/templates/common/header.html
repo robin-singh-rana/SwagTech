@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="shared-header">
 <title>SWAGTECH</title>
 <meta charset="utf-8" />
@@ -66,17 +68,17 @@ background-color: transparent;
 					<div class="row">
 
 						<!-- Logo -->
-						<div class="col-lg-2 col-sm-3 col-3 order-1">
+						<div class="col-lg-2 col-sm-2 col-2">
 							<div class="logo_container">
 								<div class="logo">
-									<a href="/"><img src="/others/images/logo.png" alt=""></a>
+									<a th:href="@{/}"><img src="/others/images/logo.png" alt=""></a>
 								</div>
 							</div>
 						</div>
 
 						<!-- Search -->
 						<div
-							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+							class="col-lg-6 col-6 col-sm-6 col-md-6 text-left text-sm-left text-md-left text-lg-left text-right">
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
@@ -106,10 +108,73 @@ background-color: transparent;
 								</div>
 							</div>
 						</div>
+						
+						<!-- Upper Triggers -->
+						<div class="col-lg-4 col-4 col-sm-4 col-md-4 col-lg-4 text-right">
+							<div
+								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+								<!-- My-Account Anonymous-->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text" style="text-align: center;">
+												<a sec:authorize="isAnonymous()" th:href="@{/login}"><i
+													class="fa fa-user fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- My-Account Logged-IN -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text" style="text-align: center;">
+												<a sec:authorize="isAuthenticated()" th:href="@{/profile}"><i
+													class="fa fa-user fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Cart -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text"  style="text-align: center;">
+												<a th:href="@{/shoppingCart/cart}"><i
+													class="fas fa-shopping-cart fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i>Cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Logout -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text"  style="text-align: center;">
+												<a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i
+													class="fas fa-power-off fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i>Logout</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
 
 					</div>
 				</div>
 			</div>
+			
+			
 
 			<!-- Main Navigation -->
 

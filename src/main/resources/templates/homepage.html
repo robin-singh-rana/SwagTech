@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+
 <title>SWAGTECH</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,7 +39,7 @@
 					<div class="row">
 
 						<!-- Logo -->
-						<div class="col-lg-2 col-sm-3 col-3 order-1">
+						<div class="col-lg-2 col-sm-2 col-2">
 							<div class="logo_container">
 								<div class="logo">
 									<a th:href="@{/}"><img src="/others/images/logo.png" alt=""></a>
@@ -47,7 +49,7 @@
 
 						<!-- Search -->
 						<div
-							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+							class="col-lg-6 col-6 col-sm-6 col-md-6 text-left text-sm-left text-md-left text-lg-left text-right">
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
@@ -78,26 +80,126 @@
 							</div>
 						</div>
 
-						<!-- Wishlist -->
-						<div
-							class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+						<!-- Upper Triggers -->
+						<div class="col-lg-4 col-4 col-sm-4 col-md-4 col-lg-4 text-right">
 							<div
 								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-
-								<!-- My Account -->
+								<!-- My-Account Anonymous-->
 								<div class="cart">
 									<div
 										class="cart_container d-flex flex-row align-items-center justify-content-end">
 										<div class="cart_content">
-											<div class="cart_text">
-												<a sec:authorize="isAnonymous()" th:href="@{/myaccount}"><i
+											<div class="cart_text" style="text-align: center;">
+												<a sec:authorize="isAnonymous()" th:href="@{/login}"><i
 													class="fa fa-user fa-3x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan"></i> My Account</a>
+													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
 											</div>
 										</div>
 									</div>
 								</div>
 
+								<!-- My-Account Logged-IN -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text" style="text-align: center;">
+												<a sec:authorize="isAuthenticated()" th:href="@{/profile}"><i
+													class="fa fa-user fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan;"></i>Account</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Cart -->
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text" style="text-align: center;">
+												<a th:href="@{/shoppingCart/cart}"><i
+													class="fas fa-shopping-cart fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i>Cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Logout -->
+								<div class="cart" sec:authorize="isAuthenticated()">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_content">
+											<div class="cart_text" style="text-align: center;">
+												<a th:href="@{/logout}"><i
+													class="fas fa-power-off fa-3x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i>Logout</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Menu Trigger -->
+
+			<div class="menu_trigger_container ml-auto">
+				<div
+					class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+					<div class="menu_burger">
+						<div class="menu_trigger_text">menu</div>
+						<div class="cat_burger menu_burger_inner">
+							<span></span><span></span><span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Menu -->
+			<div class="page_menu">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+
+							<div class="page_menu_content">
+
+								<div class="page_menu_search">
+									<form action="#">
+										<input type="search" required="required"
+											class="page_menu_search_input"
+											placeholder="Search for products...">
+									</form>
+								</div>
+								<ul class="page_menu_nav">
+									<li class="page_menu_item has-children"><a href="#">Actions<i
+											class="fa fa-angle-down"></i></a>
+										<ul class="page_menu_selection">
+											<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My
+													Account<i class="fa fa-user"></i>
+											</a></li>
+											<li><a th:href="@{/shoppingCart/cart}">Cart<i
+													class="fas fa-shopping-cart"></i></a></li>
+											<li><a sec:authorize="isAuthenticated()"
+												th:href="@{/logout}">Logout<i class="fas fa-power-off"></i></a></li>
+										</ul></li>
+								</ul>
+
+								<div class="menu_contact">
+									<div class="menu_contact_item">
+										<div class="menu_contact_icon">
+											<img src="images/phone_white.png" alt="">
+										</div>
+										+91 987654321
+									</div>
+									<div class="menu_contact_item">
+										<div class="menu_contact_icon">
+											<i class="far fa-envelope"></i>
+										</div>
+										<a href="mailto:swagtechps@gmail.com">fastsales@gmail.com</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
