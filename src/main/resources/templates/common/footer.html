@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 	<div th:fragment="shared-footer">
 		<footer class="footer">
@@ -54,7 +56,10 @@
 						<div class="footer_column">
 							<div class="footer_title">Customer Care</div>
 							<ul class="footer_list">
-								<li><a href="#">My Account</a></li>
+								<li><a sec:authorize="isAuthenticated()"
+									th:href="@{/profile}">My Account</a></li>
+								<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My
+										Account</a></li>
 								<li><a href="#">Queries</a></li>
 								<li><a href="#">Customer Services</a></li>
 								<li><a href="#">Returns / Exchange</a></li>

@@ -194,7 +194,7 @@
 										<div class="menu_contact_icon">
 											<i class="far fa-envelope"></i>
 										</div>
-										<a href="mailto:swagtechps@gmail.com">fastsales@gmail.com</a>
+										<a href="mailto:swagtechps@gmail.com">swagtechps@gmail.com</a>
 									</div>
 								</div>
 							</div>
@@ -672,7 +672,8 @@
 					<div class="footer_column">
 						<div class="footer_title">Customer Care</div>
 						<ul class="footer_list">
-							<li><a href="#">My Account</a></li>
+							<li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">My Account</a></li>
+							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
 							<li><a href="#">Queries</a></li>
 							<li><a href="#">Customer Services</a></li>
 							<li><a href="#">Returns / Exchange</a></li>
@@ -684,7 +685,6 @@
 			</div>
 		</div>
 	</footer>
-
 
 	<div th:replace="common/header :: bottom-scripts"></div>
 
