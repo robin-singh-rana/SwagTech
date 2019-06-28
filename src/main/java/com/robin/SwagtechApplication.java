@@ -35,7 +35,7 @@ public class SwagtechApplication implements CommandLineRunner {
 		user1.setLastname("boot");
 		user1.setUsername("SB");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user1.setEmail("yifiminubo@rockmailgroup.com");
+		user1.setEmail("robinsinghra@gmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1=new Role();
 		role1.setRoleId(1);

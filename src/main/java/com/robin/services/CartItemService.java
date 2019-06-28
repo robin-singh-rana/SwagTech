@@ -34,7 +34,7 @@ public class CartItemService {
 		BigDecimal bigDecimal = new BigDecimal(cartItem.getProduct().getOurPrice()).multiply(new BigDecimal(cartItem.getQty()));
 		
 		bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-		cartItem.setSubTotal(bigDecimal);
+		cartItem.setSubtotal(bigDecimal);
 		
 		cartItemRepository.save(cartItem);
 		
@@ -50,7 +50,7 @@ public class CartItemService {
 			if(product.getId() == cartItem.getProduct().getId())
 			{
 				cartItem.setQty(cartItem.getQty()+qty);
-				cartItem.setSubTotal(new BigDecimal(product.getOurPrice()).multiply(new BigDecimal(qty)));;
+				cartItem.setSubtotal(new BigDecimal(product.getOurPrice()).multiply(new BigDecimal(qty)));;
 				cartItemRepository.save(cartItem);
 				return cartItem;
 			}
@@ -61,7 +61,7 @@ public class CartItemService {
 		cartItem.setShoppingCart(user.getShoppingCart());
 		cartItem.setProduct(product);
 		cartItem.setQty(qty);
-		cartItem.setSubTotal(new BigDecimal(product.getOurPrice()).multiply(new BigDecimal(qty)));;
+		cartItem.setSubtotal(new BigDecimal(product.getOurPrice()).multiply(new BigDecimal(qty)));;
 		cartItem = cartItemRepository.save(cartItem);
 		
 		ProductToCartItem productToCartItem = new ProductToCartItem();

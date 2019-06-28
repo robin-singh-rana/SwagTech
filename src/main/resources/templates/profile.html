@@ -41,6 +41,15 @@
 										<form th:action="@{/updateUserInfo}" method="post">
 											<input type="hidden" name="id" th:value="${user.id}"></input>
 
+											<div class="alert alert-danger" th:if="${incorrectPassword}">
+												<strong>Incorrect Password!</strong> Pleae enter the correct
+												password for the current user.
+											</div>
+
+											<div class="alert alert-succss" th:if="${updateSuccess}">
+												<strong>Update Success!</strong>
+											</div>
+
 											<div class="bg-info" th:if="${updateUserInfo}">User
 												info updated.</div>
 
@@ -84,8 +93,8 @@
 												certain notification.</p>
 
 											<div class="form-group">
-												<label for="textNewPassword">Password</label>&nbsp;<span id="checkPasswordMatch" style="color: red;"></span> 
-												<input
+												<label for="textNewPassword">Password</label>&nbsp;<span
+													id="checkPasswordMatch" style="color: red;"></span> <input
 													type="password" class="form-control" id="textNewPassword"
 													name="newPassword" />
 											</div>
@@ -98,8 +107,8 @@
 											<p style="color: #828282">To change the current user
 												password, enter the new password in both fields.</p>
 
-											<button id="updateUserInfoButton" type="submit" class="btn btn-primary">Save
-												Account</button>
+											<button id="updateUserInfoButton" type="submit"
+												class="btn btn-primary">Save Account</button>
 										</form>
 									</div>
 								</div>
@@ -470,25 +479,21 @@
 		<div th:replace="common/header :: bottom-scripts"></div>
 		<!-- password comparater b/w password and confirmPassword -->
 		<script>
-			function checkPasswordMatch(){
+			function checkPasswordMatch() {
 				var password = $("#textNewPassword").val();
 				var confirmPassword = $("#textConfirmPassword").val();
-				if(passowrd == "" && confirmPassword =="")
-					{
-						$("#checkPasswordMatch").html("");
-						$("#updateUserInfoButton").prop('disabled',false);
-					}else
-						{
-							if(password != confirmPassword)
-								{
-								 $("#checkPasswordMatch").html("Password do not match!");
-								 $("#updateUserInfoButton").prop('disabled',true);
-								}
-							else {
-								 $("#checkPasswordMatch").html("Password Match!");
-								 $("#updateUserInfoButton").prop('disabled',false);
-								}
-						}
+				if (passowrd == "" && confirmPassword == "") {
+					$("#checkPasswordMatch").html("");
+					$("#updateUserInfoButton").prop('disabled', false);
+				} else {
+					if (password != confirmPassword) {
+						$("#checkPasswordMatch").html("Password do not match!");
+						$("#updateUserInfoButton").prop('disabled', true);
+					} else {
+						$("#checkPasswordMatch").html("Password Match!");
+						$("#updateUserInfoButton").prop('disabled', false);
+					}
+				}
 			}
 		</script>
 	</div>

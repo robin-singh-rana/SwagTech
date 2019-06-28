@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="shared-header">
+<link rel="stylesheet" type="text/css"
+	href="/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+<link href="/fontawesome/css/fontawesome-all.css" rel="stylesheet"
+	type="text/css" />
+<style>
+table {
+	border-collapse: collapse;
+}
+
+table, td, th {
+	border: 1px solid black;
+}
+</style>
+
+</head>
+<body>
+	<p>
+		Dear <span th:text="${user.firstname}"></span>
+	</p>
+	<br />
+	<p>Thankyou for shopping with SwagTech. We hope you enjoyed our
+		service.</p>
+	<p>
+		Your Order number is:&nbsp;<b>#<span th:text="${order.id}"></span></b>.Here
+		is your order detail:
+	</p>
+	<h2>
+		Order Details for purchase #<span th:text="${order.id}"></span>
+	</h2>
+	<hr />
+
+
+	<table class="table table-hover">
+		<tr>
+			<th scope="col">Billing Detail</th>
+			<th scope="col">Payment Information</th>
+			<th scope="col">Shipping Address</th>
+		</tr>
+		<tr>
+			<th scope="row"></th>
+			<td><span th:text="${order.billingAddress.billingAddressName}"></span><br />
+				<span
+				th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br />
+				<span th:text="${order.billingAddress.billingAddressCity}"></span><br />
+				<span th:text="${order.billingAddress.billingAddressState}"></span><br />
+				<span th:text="${order.billingAddress.billingAddressZipcode}"></span><br />
+			</td>
+			<td><span th:text="${order.payment.holderName}"></span><br /> <span
+				th:text="${order.payment.type}"></span><br /> <span
+				th:text="${order.payment.cardNumber}"></span><br /> <span
+				th:text="${order.payment.expiryMonth}"></span><br /> <span
+				th:text="${order.payment.expiryYear}"></span><br /></td>
+			<td><span th:text="${order.shippingAddress.shippingAddressName}"></span><br />
+				<span
+				th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br />
+				<span th:text="${order.shippingAddress.shippingAddressCity}"></span><br />
+				<span th:text="${order.shippingAddress.shippingAddressState}"></span><br />
+				<span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br />
+			</td>
+		</tr>
+	</table>
+
+	<h3>
+		<strong>Order Summary</strong>
+	</h3>
+	<table>
+		<thead>
+			<tr>
+				<td><strong>Item Name</strong></td>
+				<td class="text-center"><strong>Item Price</strong></td>
+				<td class="text-center"><strong>Item Quantity</strong></td>
+				<td class="text-right"><strong>Total</strong></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cartItem : ${cartItemList}">
+				<td><span data-th-text="${cartItem.product.title}"></span></td>
+				<td class="text-center"
+					data-th-text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+				<td class="text-center"
+					data-th-text="${#numbers.formatDecimal(cartItem.qty, 0, 'COMMA', 2, 'POINT')}"></td>
+				<td class="text-right"
+					data-th-text="${#numbers.formatDecimal(cartItem.subtotal, 0, 'COMMA', 2, 'POINT')}"></td>
+			</tr>
+			<tr>
+				<td class="highrow"></td>
+				<td class="highrow"></td>
+				<td class="highrow text-center"><strong>Subtotal</strong></td>
+				<td class="highrow text-right"
+					data-th-text="${#numbers.formatDecimal(order.orderTotal, 0, 'COMMA', 2, 'POINT')}"></td>
+			</tr>
+			<tr>
+				<td class="emptyrow"></td>
+				<td class="emptyrow"></td>
+				<td class="emptyrow text-center"><strong>Tax</strong></td>
+				<td class="emptyrow text-right"
+					data-th-text="${#numbers.formatDecimal(order.orderTotal*0.06, 0, 'COMMA', 2, 'POINT')}"></td>
+			</tr>
+			<tr>
+				<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+				<td class="emptyrow"></td>
+				<td class="emptyrow text-center"><strong>Total</strong></td>
+				<td th:with="total=${order.orderTotal+order.orderTotal*0.06}"
+					data-th-text="${#numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT')}"
+					class="emptyrow text-right"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<p>Best,</p>
+	<p>
+		<img th:src="@{others/images/logo.png}"/>
+	</p>
+	<p>
+		<b><i>SwagTech</i></b>
+	</p>
+	<p>Since 2019</p>
+
+</body>
+</html>

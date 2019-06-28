@@ -30,7 +30,7 @@ public class ShoppingCartService {
 			if(cartItem.getProduct().getInStockNumber()>0)
 			{
 				cartItemService.updateCartItem(cartItem);
-				cartTotal = cartTotal.add(cartItem.getSubTotal());
+				cartTotal = cartTotal.add(cartItem.getSubtotal());
 			}
 		}
 		
