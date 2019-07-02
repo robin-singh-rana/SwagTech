@@ -47,7 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/datatables/**",
 			"/viewProducts",
 			"/productDetail",
-			"/images/**"
+			"/images/**",
+			"/searchByCategory",
+			"/searchBySubCategory",
+			"/searchByBrand"
 	};
 
 	@Override

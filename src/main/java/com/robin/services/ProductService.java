@@ -1,5 +1,6 @@
 package com.robin.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,47 @@ public class ProductService {
 	public Optional<Product> findById(Long id) {
 		
 		return productRepository.findById(id);
+	}
+
+	public List<Product> findByCategory(String category) {
+		
+		List<Product> productList = productRepository.findByCategory(category);
+		
+		List<Product> activeProductList = new ArrayList<>();
+		
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
+	}
+
+	public List<Product> findBySubCategory(String subcategory) {
+		
+		List<Product> productList = productRepository.findBySubcategory(subcategory);
+		
+		List<Product> activeProductList = new ArrayList<>();
+		
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
+	}
+
+	public List<Product> findByBrand(String brand) {
+		
+		List<Product> productList = productRepository.findByBrand(brand);
+		
+		List<Product> activeProductList = new ArrayList<>();
+		
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
 	}
 }

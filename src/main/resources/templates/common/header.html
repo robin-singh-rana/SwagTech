@@ -194,39 +194,39 @@ background-color: transparent;
 									</div>
 
 									<ul class="cat_menu">
-										<li><a href="#">Computers & Laptops <i
+										<li><a th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">Computers & Laptops <i
 												class="fas fa-chevron-right ml-auto"></i></a></li>
-										<li><a href="#">Cameras<i
+										<li><a th:href="@{/searchByCategory(category='Cameras')}">Cameras<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li class="hassubs"><a href="#">Accessories<i
+										<li class="hassubs"><a th:href="@{/searchByCategory(category='Accessories')}">Accessories<i
 												class="fas fa-chevron-right"></i></a>
 											<ul>
 												<li class="hassubs"><a href="#">Gadgets<i
 														class="fas fa-chevron-right"></i></a>
 													<ul>
-														<li><a href="#">Cases & Covers<i
+														<li><a th:href="@{/searchBySubCategory(subcategory='Cases &amp; Covers')}">Cases & Covers<i
 																class="fas fa-chevron-right"></i></a></li>
-														<li><a href="#">Hard Disks<i
+														<li><a th:href="@{/searchBySubCategory(subcategory='Hard Disks')}">Hard Disks<i
 																class="fas fa-chevron-right"></i></a></li>
-														<li><a href="#">Screen Protectors<i
+														<li><a th:href="@{/searchBySubCategory(subcategory='Screen Protectors')}">Screen Protectors<i
 																class="fas fa-chevron-right"></i></a></li>
-														<li><a href="#">Mobile Chargers & Cables<i
+														<li><a th:href="@{/searchBySubCategory(subcategory='Mobile Chargers &amp; Cables')}">Mobile Chargers & Cables<i
 																class="fas fa-chevron-right"></i></a></li>
 													</ul></li>
-												<li><a href="#">Speakers<i
+												<li><a th:href="@{/searchBySubCategory(subcategory='Speakers')}">Speakers<i
 														class="fas fa-chevron-right"></i></a></li>
-												<li><a href="#">Headphones<i
+												<li><a th:href="@{/searchBySubCategory(subcategory='Headphones')}">Headphones<i
 														class="fas fa-chevron-right"></i></a></li>
-												<li><a href="#">Power Banks<i
+												<li><a th:href="@{/searchBySubCategory(subcategory='Power Banks')}">Power Banks<i
 														class="fas fa-chevron-right"></i></a></li>
 											</ul></li>
-										<li><a href="#">Smartphones<i
+										<li><a th:href="@{/searchByCategory(category='Smartphones')}">Smartphones<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li><a href="#">Tablets<i
+										<li><a th:href="@{/searchByCategory(category='Tablets')}">Tablets<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li><a href="#">TV & Audio<i
+										<li><a th:href="@{/searchByCategory(category='TV &amp; Audio')}">TV & Audio<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li><a href="#">Video Games & Consoles<i
+										<li><a th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}">Video Games & Consoles<i
 												class="fas fa-chevron-right"></i></a></li>
 									</ul>
 								</div>
@@ -235,11 +235,11 @@ background-color: transparent;
 
 								<div class="main_nav_menu ml-auto">
 									<ul class="standard_dropdown main_nav_dropdown">
-										<li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
+										<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
 										<li class="hassubs"><a href="#">Super Deals<i
 												class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="#">SmartPhones<i
+												<li><a th:href="@{/searchByCategory(category='Smartphones')}">SmartPhones<i
 														class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a href="#">Under ₹20,000</a></li>
@@ -256,20 +256,20 @@ background-color: transparent;
 										<li class="hassubs"><a href="#">Featured Brands<i
 												class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a href="#">Apple<i class="fas fa-chevron-down"></i></a>
+												<li><a th:href="@{/searchByBrand(brand='Apple')}">Apple<i class="fas fa-chevron-down"></i></a>
 													<ul>
-														<li><a href="#">iPhones<i
+														<li><a th:href="@{/searchByBrand(brand='Apple')}">iPhones<i
 																class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">iPads<i
+														<li><a th:href="@{/searchByBrand(brand='Apple')}">iPads<i
 																class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">MacBooks<i
+														<li><a th:href="@{/searchByBrand(brand='Apple')}">MacBooks<i
 																class="fas fa-chevron-down"></i></a></li>
 													</ul></li>
-												<li><a href="#">Xiaomi<i
+												<li><a th:href="@{/searchByBrand(brand='Xiaomi')}">Xiaomi<i
 														class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Samsung<i
+												<li><a th:href="@{/searchByBrand(brand='Samsung')}">Samsung<i
 														class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Dell<i class="fas fa-chevron-down"></i></a></li>
+												<li><a th:href="@{/searchByBrand(brand='Dell')}">Dell<i class="fas fa-chevron-down"></i></a></li>
 											</ul></li>
 									</ul>
 								</div>
