@@ -53,8 +53,8 @@
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
-										<form action="#" class="header_search_form clearfix">
-											<input type="search" required="required"
+										<form th:action="@{/searchProduct}" method="post" class="header_search_form clearfix">
+											<input type="text" name="keyword" required="required"
 												class="header_search_input"
 												placeholder="Search for products...">
 											<div class="custom_dropdown">
@@ -272,15 +272,15 @@
 												<li><a th:href="@{/searchByCategory(category='Smartphones')}">SmartPhones<i
 														class="fas fa-chevron-down"></i></a>
 													<ul>
-														<li><a href="#">Under ₹20,000</a></li>
-														<li><a href="#">Under ₹30,000<i
+														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=20000)}">Under ₹20,000</a></li>
+														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=30000)}">Under ₹30,000<i
 																class="fas fa-chevron-down"></i></a></li>
-														<li><a href="#">Under ₹50,000<i
+														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=50000)}">Under ₹50,000<i
 																class="fas fa-chevron-down"></i></a></li>
 													</ul></li>
-												<li><a href="#">Cameras Under ₹40,000<i
+												<li><a th:href="@{/searchByPrice(category='Cameras',ourprice=40000)}">Cameras Under ₹40,000<i
 														class="fas fa-chevron-down"></i></a></li>
-												<li><a href="#">Laptops Under ₹50,000<i
+												<li><a th:href="@{/searchByPrice(category='Cameras',ourprice=50000)}">Laptops Under ₹50,000<i
 														class="fas fa-chevron-down"></i></a></li>
 											</ul></li>
 										<li class="hassubs"><a href="#">Featured Brands<i
@@ -439,7 +439,7 @@
 							</div>
 						</div>
 						<div class="popular_categories_link">
-							<a href="#">full catalog</a>
+							<a th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">full catalog</a>
 						</div>
 					</div>
 				</div>
@@ -455,9 +455,9 @@
 								<div
 									class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image">
-										<img src="/others/images/popular_1.png" alt="">
+										<a th:href="@{/searchByCategory(category='Smartphones')}"><img src="/others/images/popular_1.png" alt=""></a>
 									</div>
-									<div class="popular_category_text">Smartphones & Tablets</div>
+									<div class="popular_category_text">Smartphones</div>
 								</div>
 							</div>
 
@@ -466,7 +466,7 @@
 								<div
 									class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image">
-										<img src="/others/images/popular_2.png" alt="">
+										<a th:href="@{/searchByCategory(category='Computer &amp; Laptops')}"><img src="/others/images/popular_2.png" alt=""></a>
 									</div>
 									<div class="popular_category_text">Computers & Laptops</div>
 								</div>
@@ -477,7 +477,7 @@
 								<div
 									class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image">
-										<img src="/others/images/popular_3.png" alt="">
+										<a th:href="@{/searchByCategory(category='Accessories')}"><img src="/others/images/popular_3.png" alt=""></a>
 									</div>
 									<div class="popular_category_text">Gadgets</div>
 								</div>
@@ -488,7 +488,7 @@
 								<div
 									class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image">
-										<img src="/others/images/popular_4.png" alt="">
+										<a th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}"><img src="/others/images/popular_4.png" alt=""></a>
 									</div>
 									<div class="popular_category_text">Video Games & Consoles</div>
 								</div>
@@ -499,9 +499,9 @@
 								<div
 									class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image">
-										<img src="/others/images/popular_5.png" alt="">
+										<a th:href="@{/searchByCategory(category='TV &amp; Audio')}"><img src="/others/images/popular_5.png" alt=""></a>
 									</div>
-									<div class="popular_category_text">Accessories</div>
+									<div class="popular_category_text">TV & Audio</div>
 								</div>
 							</div>
 

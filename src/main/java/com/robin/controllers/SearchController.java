@@ -95,4 +95,53 @@ public class SearchController {
 		return "viewProducts";
 	}
 	
+	@RequestMapping("/searchProduct")
+	public String searchproduct(
+			@RequestParam("keyword") String keyword,
+			Model model, Principal principal)
+	{
+		if(principal!=null)
+		{
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user",user);
+		}
+		
+		List<Product> productList = productService.blurrySearch(keyword);
+		
+		if(productList.isEmpty())
+		{
+			model.addAttribute("emptyList",true);
+			return "viewProducts";
+		}
+		
+		model.addAttribute("productList",productList);
+		return "viewProducts";
+	}
+	
+	
+	@RequestMapping("/searchByPrice")
+	public String searchbyprice(
+			@RequestParam("listprice") double ourprice,
+			@RequestParam("category") String category,
+			Model model, Principal principal)
+	{
+		if(principal!=null)
+		{
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user",user);
+		}
+		
+		List<Product> productList = productService.findByCategoryAndOurPriceLessThan(category,ourprice);
+		
+		if(productList.isEmpty())
+		{
+			model.addAttribute("emptyList",true);
+			return "viewProducts";
+		}
+		
+		model.addAttribute("productList",productList);
+		return "viewProducts";
+	}
 }

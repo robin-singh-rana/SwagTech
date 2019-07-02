@@ -50,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/images/**",
 			"/searchByCategory",
 			"/searchBySubCategory",
-			"/searchByBrand"
+			"/searchByBrand",
+			"/searchProduct",
+			"/searchByPrice"
 	};
 
 	@Override

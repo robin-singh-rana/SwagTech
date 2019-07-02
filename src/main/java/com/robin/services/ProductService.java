@@ -15,23 +15,23 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	public List<Product> findAll()
 	{
 		return (List<Product>) productRepository.findAll();
 	}
 
 	public Optional<Product> findById(Long id) {
-		
+
 		return productRepository.findById(id);
 	}
 
 	public List<Product> findByCategory(String category) {
-		
+
 		List<Product> productList = productRepository.findByCategory(category);
-		
+
 		List<Product> activeProductList = new ArrayList<>();
-		
+
 		for(Product product:productList)
 		{
 			if(product.isActive())
@@ -41,11 +41,11 @@ public class ProductService {
 	}
 
 	public List<Product> findBySubCategory(String subcategory) {
-		
+
 		List<Product> productList = productRepository.findBySubcategory(subcategory);
-		
+
 		List<Product> activeProductList = new ArrayList<>();
-		
+
 		for(Product product:productList)
 		{
 			if(product.isActive())
@@ -55,11 +55,36 @@ public class ProductService {
 	}
 
 	public List<Product> findByBrand(String brand) {
-		
+
 		List<Product> productList = productRepository.findByBrand(brand);
-		
+
 		List<Product> activeProductList = new ArrayList<>();
-		
+
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
+	}
+
+	public List<Product> blurrySearch(String title) {
+
+		List<Product> productList = productRepository.findByTitleContaining(title);
+		List<Product> activeProductList = new ArrayList<>();
+
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
+	}
+
+	public List<Product> findByCategoryAndOurPriceLessThan(String category, double ourprice) {
+		List<Product> productList = productRepository.findByCategoryAndOurPriceLessThan(category,ourprice);
+		List<Product> activeProductList = new ArrayList<>();
+
 		for(Product product:productList)
 		{
 			if(product.isActive())
