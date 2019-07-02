@@ -144,4 +144,30 @@ public class SearchController {
 		model.addAttribute("productList",productList);
 		return "viewProducts";
 	}
+	
+	@RequestMapping("/searchByCategoryAndBrand")
+	public String searchbyprice(
+			@RequestParam("brand") String brand,
+			@RequestParam("category") String category,
+			Model model, Principal principal)
+	{
+		if(principal!=null)
+		{
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user",user);
+		}
+		
+		List<Product> productList = productService.findByCategoryAndBrand(category,brand);
+		
+		if(productList.isEmpty())
+		{
+			model.addAttribute("emptyList",true);
+			return "viewProducts";
+		}
+		
+		model.addAttribute("productList",productList);
+		return "viewProducts";
+	}
+	
 }

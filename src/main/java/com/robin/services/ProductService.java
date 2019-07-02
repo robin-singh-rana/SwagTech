@@ -92,4 +92,16 @@ public class ProductService {
 		}
 		return activeProductList;
 	}
+
+	public List<Product> findByCategoryAndBrand(String category, String brand) {
+		List<Product> productList = productRepository.findByCategoryAndBrand(category,brand);
+		List<Product> activeProductList = new ArrayList<>();
+
+		for(Product product:productList)
+		{
+			if(product.isActive())
+				activeProductList.add(product);
+		}
+		return activeProductList;
+	}
 }

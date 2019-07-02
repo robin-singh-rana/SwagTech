@@ -52,7 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/searchBySubCategory",
 			"/searchByBrand",
 			"/searchProduct",
-			"/searchByPrice"
+			"/searchByPrice",
+			"/searchByCategoryAndBrand"
 	};
 
 	@Override
