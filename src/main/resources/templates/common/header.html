@@ -22,7 +22,8 @@
 <link rel="stylesheet" type="text/css" href="/css/responsive.css" />
 
 <!-- Data table -->
-<link rel="stylesheet" type="text/css" th:href="@{/datatables/css/dataTables.bootstrap4.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/datatables/css/dataTables.bootstrap4.min.css}" />
 
 <style>
 .cat_menu_container ul {
@@ -42,11 +43,40 @@
 }
 
 .required {
-	color:red;
+	color: red;
 }
 
-p {color: black;
-background-color: transparent;
+p {
+	color: black;
+	background-color: transparent;
+}
+
+.valid {
+	color: darkgreen !important;
+}
+
+.valid:before {
+	position: relative;
+	content: "✔";
+}
+
+.invalid {
+	color: red !important;
+}
+
+.form-control-custom {
+	display: block;
+	width: 100%;
+	height: calc(1.5em + .75rem + 2px);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 </style>
@@ -82,7 +112,8 @@ background-color: transparent;
 							<div class="header_search">
 								<div class="header_search_content">
 									<div class="header_search_form_container">
-										<form th:action="@{/searchProduct}" method="post" class="header_search_form clearfix">
+										<form th:action="@{/searchProduct}" method="post"
+											class="header_search_form clearfix">
 											<input type="text" name="keyword" required="required"
 												class="header_search_input"
 												placeholder="Search for products...">
@@ -123,7 +154,8 @@ background-color: transparent;
 										<div class="wishlist_count" style="text-align: center;">
 											<a sec:authorize="isAnonymous()" th:href="@{/login}"><i
 												class="fa fa-user fa-3x" aria-hidden="true"
-												style="text-shadow: 3px 3px 16px cyan; "></i><span style="color:black; font-weight: bolder;">Login</span></a>
+												style="text-shadow: 3px 3px 16px cyan;"></i><span
+												style="color: black; font-weight: bolder;">Login</span></a>
 										</div>
 									</div>
 								</div>
@@ -134,7 +166,8 @@ background-color: transparent;
 										<div class="wishlist_count" style="text-align: center;">
 											<a sec:authorize="isAuthenticated()" th:href="@{/profile}"><i
 												class="fas fa-user-circle fa-2x" aria-hidden="true"
-												style="text-shadow: 3px 3px 16px cyan;"></i><span style="color:black; font-weight: bolder;">Profile</span></a>
+												style="text-shadow: 3px 3px 16px cyan;"></i><span
+												style="color: black; font-weight: bolder;">Profile</span></a>
 										</div>
 									</div>
 								</div>
@@ -146,7 +179,8 @@ background-color: transparent;
 											<div class="cart_price" style="text-align: center;">
 												<a th:href="@{/shoppingCart/cart}"><i
 													class="fas fa-shopping-cart fa-2x" aria-hidden="true"
-													style="text-shadow: 3px 3px 16px cyan"></i><span style="color:black; font-weight: bolder;">Cart</span></a>
+													style="text-shadow: 3px 3px 16px cyan"></i><span
+													style="color: black; font-weight: bolder;">Cart</span></a>
 											</div>
 										</div>
 									</div>
@@ -157,8 +191,10 @@ background-color: transparent;
 										class="cart_container d-flex flex-row align-items-center justify-content-end">
 										<div class="cart_content">
 											<div class="cart_price" style="text-align: center;">
-												<a th:href="@{/logout}"><i class="fas fa-power-off fa-2x"
-													aria-hidden="true" style="text-shadow: 3px 3px 16px cyan"></i><span style="color:black; font-weight: bolder;">Logout</span></a>
+												<a th:href="@{/logout}"><i
+													class="fas fa-power-off fa-2x" aria-hidden="true"
+													style="text-shadow: 3px 3px 16px cyan"></i><span
+													style="color: black; font-weight: bolder;">Logout</span></a>
 											</div>
 										</div>
 									</div>
@@ -170,8 +206,8 @@ background-color: transparent;
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 
 			<!-- Main Navigation -->
 
@@ -194,40 +230,60 @@ background-color: transparent;
 									</div>
 
 									<ul class="cat_menu">
-										<li><a th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">Computers & Laptops <i
-												class="fas fa-chevron-right ml-auto"></i></a></li>
+										<li><a
+											th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">Computers
+												& Laptops <i class="fas fa-chevron-right ml-auto"></i>
+										</a></li>
 										<li><a th:href="@{/searchByCategory(category='Cameras')}">Cameras<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li class="hassubs"><a th:href="@{/searchByCategory(category='Accessories')}">Accessories<i
+										<li class="hassubs"><a
+											th:href="@{/searchByCategory(category='Accessories')}">Accessories<i
 												class="fas fa-chevron-right"></i></a>
 											<ul>
 												<li class="hassubs"><a href="#">Gadgets<i
 														class="fas fa-chevron-right"></i></a>
 													<ul>
-														<li><a th:href="@{/searchBySubCategory(subcategory='Cases &amp; Covers')}">Cases & Covers<i
-																class="fas fa-chevron-right"></i></a></li>
-														<li><a th:href="@{/searchBySubCategory(subcategory='Hard Disks')}">Hard Disks<i
-																class="fas fa-chevron-right"></i></a></li>
-														<li><a th:href="@{/searchBySubCategory(subcategory='Screen Protectors')}">Screen Protectors<i
-																class="fas fa-chevron-right"></i></a></li>
-														<li><a th:href="@{/searchBySubCategory(subcategory='Mobile Chargers &amp; Cables')}">Mobile Chargers & Cables<i
-																class="fas fa-chevron-right"></i></a></li>
+														<li><a
+															th:href="@{/searchBySubCategory(subcategory='Cases &amp; Covers')}">Cases
+																& Covers<i class="fas fa-chevron-right"></i>
+														</a></li>
+														<li><a
+															th:href="@{/searchBySubCategory(subcategory='Hard Disks')}">Hard
+																Disks<i class="fas fa-chevron-right"></i>
+														</a></li>
+														<li><a
+															th:href="@{/searchBySubCategory(subcategory='Screen Protectors')}">Screen
+																Protectors<i class="fas fa-chevron-right"></i>
+														</a></li>
+														<li><a
+															th:href="@{/searchBySubCategory(subcategory='Mobile Chargers &amp; Cables')}">Mobile
+																Chargers & Cables<i class="fas fa-chevron-right"></i>
+														</a></li>
 													</ul></li>
-												<li><a th:href="@{/searchBySubCategory(subcategory='Speakers')}">Speakers<i
+												<li><a
+													th:href="@{/searchBySubCategory(subcategory='Speakers')}">Speakers<i
 														class="fas fa-chevron-right"></i></a></li>
-												<li><a th:href="@{/searchBySubCategory(subcategory='Headphones')}">Headphones<i
+												<li><a
+													th:href="@{/searchBySubCategory(subcategory='Headphones')}">Headphones<i
 														class="fas fa-chevron-right"></i></a></li>
-												<li><a th:href="@{/searchBySubCategory(subcategory='Power Banks')}">Power Banks<i
-														class="fas fa-chevron-right"></i></a></li>
+												<li><a
+													th:href="@{/searchBySubCategory(subcategory='Power Banks')}">Power
+														Banks<i class="fas fa-chevron-right"></i>
+												</a></li>
 											</ul></li>
-										<li><a th:href="@{/searchByCategory(category='Smartphones')}">Smartphones<i
+										<li><a
+											th:href="@{/searchByCategory(category='Smartphones')}">Smartphones<i
 												class="fas fa-chevron-right"></i></a></li>
 										<li><a th:href="@{/searchByCategory(category='Tablets')}">Tablets<i
 												class="fas fa-chevron-right"></i></a></li>
-										<li><a th:href="@{/searchByCategory(category='TV &amp; Audio')}">TV & Audio<i
-												class="fas fa-chevron-right"></i></a></li>
-										<li><a th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}">Video Games & Consoles<i
-												class="fas fa-chevron-right"></i></a></li>
+										<li><a
+											th:href="@{/searchByCategory(category='TV &amp; Audio')}">TV
+												& Audio<i class="fas fa-chevron-right"></i>
+										</a></li>
+										<li><a
+											th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}">Video
+												Games & Consoles<i class="fas fa-chevron-right"></i>
+										</a></li>
 									</ul>
 								</div>
 
@@ -235,28 +291,41 @@ background-color: transparent;
 
 								<div class="main_nav_menu ml-auto">
 									<ul class="standard_dropdown main_nav_dropdown">
-										<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+										<li><a th:href="@{/}">Home<i
+												class="fas fa-chevron-down"></i></a></li>
 										<li class="hassubs"><a href="#">Super Deals<i
 												class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a th:href="@{/searchByCategory(category='Smartphones')}">SmartPhones<i
+												<li><a
+													th:href="@{/searchByCategory(category='Smartphones')}">SmartPhones<i
 														class="fas fa-chevron-down"></i></a>
 													<ul>
-														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=20000)}">Under ₹20,000</a></li>
-														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=30000)}">Under ₹30,000<i
-																class="fas fa-chevron-down"></i></a></li>
-														<li><a th:href="@{/searchByPrice(category='Smartphones',ourprice=50000)}">Under ₹50,000<i
-																class="fas fa-chevron-down"></i></a></li>
+														<li><a
+															th:href="@{/searchByPrice(category='Smartphones',ourprice=20000)}">Under
+																₹20,000</a></li>
+														<li><a
+															th:href="@{/searchByPrice(category='Smartphones',ourprice=30000)}">Under
+																₹30,000<i class="fas fa-chevron-down"></i>
+														</a></li>
+														<li><a
+															th:href="@{/searchByPrice(category='Smartphones',ourprice=50000)}">Under
+																₹50,000<i class="fas fa-chevron-down"></i>
+														</a></li>
 													</ul></li>
-												<li><a th:href="@{/searchByPrice(category='Cameras',ourprice=40000)}">Cameras Under ₹40,000<i
-														class="fas fa-chevron-down"></i></a></li>
-												<li><a th:href="@{/searchByPrice(category='Cameras',ourprice=50000)}">Laptops Under ₹50,000<i
-														class="fas fa-chevron-down"></i></a></li>
+												<li><a
+													th:href="@{/searchByPrice(category='Cameras',ourprice=40000)}">Cameras
+														Under ₹40,000<i class="fas fa-chevron-down"></i>
+												</a></li>
+												<li><a
+													th:href="@{/searchByPrice(category='Cameras',ourprice=50000)}">Laptops
+														Under ₹50,000<i class="fas fa-chevron-down"></i>
+												</a></li>
 											</ul></li>
 										<li class="hassubs"><a href="#">Featured Brands<i
 												class="fas fa-chevron-down"></i></a>
 											<ul>
-												<li><a th:href="@{/searchByBrand(brand='Apple')}">Apple<i class="fas fa-chevron-down"></i></a>
+												<li><a th:href="@{/searchByBrand(brand='Apple')}">Apple<i
+														class="fas fa-chevron-down"></i></a>
 													<ul>
 														<li><a th:href="@{/searchByBrand(brand='Apple')}">iPhones<i
 																class="fas fa-chevron-down"></i></a></li>
@@ -269,7 +338,8 @@ background-color: transparent;
 														class="fas fa-chevron-down"></i></a></li>
 												<li><a th:href="@{/searchByBrand(brand='Samsung')}">Samsung<i
 														class="fas fa-chevron-down"></i></a></li>
-												<li><a th:href="@{/searchByBrand(brand='Dell')}">Dell<i class="fas fa-chevron-down"></i></a></li>
+												<li><a th:href="@{/searchByBrand(brand='Dell')}">Dell<i
+														class="fas fa-chevron-down"></i></a></li>
 											</ul></li>
 									</ul>
 								</div>

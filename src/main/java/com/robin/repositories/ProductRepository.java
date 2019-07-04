@@ -16,7 +16,7 @@ public interface ProductRepository extends CrudRepository<Product, Long>{
 
 	List<Product> findByTitleContaining(String title);
 
-	List<Product> findByCategoryAndOurPriceLessThan(String category,double listprice);
+	List<Product> findByCategoryAndOurPriceLessThan(String category,double ourprice);
 
 	List<Product> findByCategoryAndBrand(String category, String brand);
 

@@ -38,7 +38,8 @@
 								<div class="panel panel-default">
 									<div class="panel-body"
 										style="background-color: #ededed; margin-top: 20px; margin-bottom: 80px; padding: 20px; box-shadow: 2px 30px 70px 0 #212529;">
-										<form th:action="@{/updateUserInfo}" method="post">
+										<form th:action="@{/updateUserInfo}" method="post"
+											oninput='up2.setCustomValidity(up2.value != newPassword.value ? "Passwords do not match." : "")'>
 											<input type="hidden" name="id" th:value="${user.id}"></input>
 
 											<div class="alert alert-danger" th:if="${incorrectPassword}">
@@ -82,27 +83,37 @@
 												change the email address or password.</p>
 
 											<div class="form-group">
-												<label for="email">* Email Address</label><input type="text"
-													class="form-control" id="email" name="email"
+												<label for="email">* Email Address</label><input
+													type="email" class="form-control" id="email" name="email"
 													th:value="${user.email}" />
 											</div>
 											<p style="color: #828282">A valid email address. All
-												emails from the system withll be sent to this address. The
+												emails from the system will be sent to this address. The
 												email address is not made public and will only be used if
 												you wish to receive a new password or wish to receive
 												certain notification.</p>
 
 											<div class="form-group">
-												<label for="textNewPassword">Password</label>&nbsp;<span
-													id="checkPasswordMatch" style="color: red;"></span> <input
-													type="password" class="form-control" id="textNewPassword"
+												<label for="newPassword">Password</label>&nbsp;<span
+													style="color: red;"></span> <input id="newPassword"
+													pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+													title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+													required type="password" class="form-control"
 													name="newPassword" />
+												<p>
+													Password should contain at least <span id="length"
+														class="invalid">8 characters</span>, <span id="capital"
+														class="invalid">1 upper case letter</span>, <span
+														id="letter" class="invalid">1 lower case letter</span>, <span
+														id="number" class="invalid">1 number</span>, and <span
+														id="character" class="invalid">1 special character</span>
+												</p>
 											</div>
 
 											<div class="form-group">
 												<label for="textConfirmPassword">Confirm Password</label><input
 													type="password" class="form-control"
-													id="textConfirmPassword" />
+													id="textConfirmPassword" name="up2" />
 											</div>
 											<p style="color: #828282">To change the current user
 												password, enter the new password in both fields.</p>
@@ -148,7 +159,7 @@
 											<table class="table">
 												<thead>
 													<tr>
-														<th>Default</th>
+														<th>List</th>
 														<th>Credit Card</th>
 														<th>Operations</th>
 													</tr>
@@ -216,26 +227,22 @@
 																th:value="${userBilling.userBillingCity}" />
 														</div>
 													</div>
-													<div class="col-4">
-														<div class="form-group">
-															<label for="billingState">* State</label> <select
-																id="billingState" class="form-control"
-																th:name="userBillingState"
-																th:value="${userBilling.userBillingState}"
-																required="required">
-																<option value="" disabled="disabled">Please
-																	select an option</option>
-																<option th:each="state : ${stateList}"
-																	th:text="${state}"
-																	th:selected="(${userBilling.userBillingState}==${state})"></option>
-															</select>
-														</div>
+													<div class="form-group col-4 col-sm-4 col-lg-4 col-md-4">
+														<label for="billingState">* State</label> <select
+															id="billingState" class="form-control-custom "
+															th:name="userBillingState" required="required">
+															<option value="" disabled="disabled">Please
+																select an option</option>
+															<option th:each="state : ${stateList}" th:text="${state}"
+																th:selected="(${userBilling.userBillingState}==${state})"></option>
+														</select>
 													</div>
 													<div class="col-4">
 														<div class="form-group">
 															<label for="billingZipcode">* Zipcode</label> <input
-																type="text" class="form-control" id="billingZipcode"
-																placeholder="Billing Zipcode"
+																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																type="number" maxlength="6" class="form-control"
+																id="billingZipcode" placeholder="Billing Zipcode"
 																th:name="userBillingZipcode" required="required"
 																th:value="${userBilling.userBillingZipcode}" />
 														</div>
@@ -253,12 +260,12 @@
 															class="img-responsive" /><br />
 														<div class="form-group">
 															<label for="cardType">* Select Card Type:</label> <select
-																class="form-control" id="cardType" th:name="type"
+																class="form-control-custom" id="cardType" th:name="type"
 																th:value="${userPayment.type}">
 																<option value="visa">Visa</option>
 																<option value="mastercard">Mastercard</option>
 																<option value="discover">Discover</option>
-																<option value="amex">American Express</option>
+																<option value="amex">AmericanExpress</option>
 															</select>
 														</div>
 														<div class="form-group">
@@ -271,7 +278,9 @@
 														<div class="form-group">
 															<label for="cardNumber">* Card Number:</label>
 															<div class="input-group">
-																<input type="tel" class="form-control" id="cardNumber"
+																<input class="form-control"
+																	oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																	type="number" maxlength="16" id="cardNumber"
 																	required="required" placeHolder="Valid Card Number"
 																	th:name="cardNumber"
 																	th:value="${userPayment.cardNumber}" /> <span
@@ -284,11 +293,11 @@
 
 												<div class="row">
 													<div class="col-7">
-														<div class="form-group">
+														<div class="">
 															<label>* Expiration Date</label>
 															<div class="row">
 																<div class="col-6">
-																	<select class="form-control" name="expiryMonth"
+																	<select class="form-control-custom" name="expiryMonth"
 																		required="required"
 																		th:value="${userPayment.expiryMonth}">
 																		<option disabled="disabled">-- Month --</option>
@@ -307,8 +316,8 @@
 																	</select>
 																</div>
 																<div class="col-6">
-																	<select class="form-control" name="expiryYear"
-																		th:value="${userPayment.expiryYear}">
+																	<select class="form-control-custom" name="expiryYear"
+																		th:value="${userPayment.expiryYear}" required="required">
 																		<option disabled="disabled">-- Year --</option>
 																		<option value="19">2019</option>
 																		<option value="20">2020</option>
@@ -330,9 +339,10 @@
 													<div class="col-5">
 														<div class="form-group">
 															<label for="cardCVC">CV Code</label> <input id="cardCVC"
-																type="tel" class="form-control" name="cvc"
-																placeholder="CVC" th:name="cvc"
-																th:value="${userPayment.cvc}" />
+																class="form-control" name="cvc"
+																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																type="number" maxlength="3" placeholder="CVC"
+																th:name="cvc" th:value="${userPayment.cvc}" />
 														</div>
 													</div>
 												</div>
@@ -369,7 +379,7 @@
 											<table class="table">
 												<thead>
 													<tr>
-														<th>Default</th>
+														<th>List</th>
 														<th>Shipping Address</th>
 														<th>Operations</th>
 													</tr>
@@ -379,7 +389,7 @@
 														<td><input type="radio"
 															name="defaultShippingAddressId"
 															th:value="${userShipping.id}"
-															th:checked="${userShipping.userShippingDefault}" /><span>default</span></td>
+															th:checked="${userShipping.userShippingDefault}" /></td>
 														<td
 															th:text="${userShipping.userShippingStreet1}+', '+
 														${userShipping.userShippingCity}+', '+${userShipping.userShippingState}"></td>
@@ -419,7 +429,7 @@
 														th:value="${userShipping.userShippingStreet1}" /> <input
 														type="text" class="form-control"
 														placeholder="Street Address 2"
-														th:name="userShppingStreet2"
+														th:name="userShppingStreet2" required="required"
 														th:value="${userShipping.userShippingStreet2}" />
 												</div>
 
@@ -433,25 +443,26 @@
 																th:value="${userShipping.userShippingCity}" />
 														</div>
 													</div>
-													<div class="col-4">
-														<div class="form-group">
-															<label for="shippingState">* State</label> <select
-																id="shippingState" class="form-control"
-																th:name="userShippingState"
-																th:value="${userShipping.userShippingState}"
-																required="required">
-																<option value="" disabled="disabled">Please
-																	select an option</option>
-																<option th:each="state : ${stateList}"
-																	th:text="${state}"
-																	th:selected="(${userShipping.userShippingState}==${state})"></option>
-															</select>
-														</div>
+
+													<div class="form-group col-4 col-sm-4 col-lg-4 col-md-4">
+														<label for="shippingState">* State</label> <select
+															id="shippingState" class="form-control-custom"
+															th:name="userShippingState"
+															th:value="${userShipping.userShippingState}"
+															required="required">
+															<option value="" disabled="disabled">Please
+																select an option</option>
+															<option th:each="state : ${stateList}" th:text="${state}"
+																th:selected="(${userShipping.userShippingState}==${state})"></option>
+														</select>
 													</div>
+
 													<div class="col-4">
 														<div class="form-group">
 															<label for="shippingZipcode">* Zipcode</label> <input
-																type="text" class="form-control" id="shippingZipcode"
+																class="form-control" id="shippingZipcode"
+																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																type="number" maxlength="6"
 																placeholder="Shipping Zipcode"
 																th:name="userShippingZipcode" required="required"
 																th:value="${userShipping.userShippingZipcode}" />
@@ -476,26 +487,69 @@
 		</div>
 
 		<div th:replace="common/footer :: shared-footer"></div>
-		<div th:replace="common/header :: bottom-scripts"></div>
-		<!-- password comparater b/w password and confirmPassword -->
+
 		<script>
-			function checkPasswordMatch() {
-				var password = $("#textNewPassword").val();
-				var confirmPassword = $("#textConfirmPassword").val();
-				if (passowrd == "" && confirmPassword == "") {
-					$("#checkPasswordMatch").html("");
-					$("#updateUserInfoButton").prop('disabled', false);
+			var myInput = document.getElementById("newPassword");
+			var letter = document.getElementById("letter");
+			var capital = document.getElementById("capital");
+			var number = document.getElementById("number");
+			var length = document.getElementById("length");
+
+			// When the user starts to type something inside the password field
+			myInput.onkeyup = function() {
+				// Validate lowercase letters
+				var lowerCaseLetters = /[a-z]/g;
+				if (myInput.value.match(lowerCaseLetters)) {
+					letter.classList.remove("invalid");
+					letter.classList.add("valid");
 				} else {
-					if (password != confirmPassword) {
-						$("#checkPasswordMatch").html("Password do not match!");
-						$("#updateUserInfoButton").prop('disabled', true);
-					} else {
-						$("#checkPasswordMatch").html("Password Match!");
-						$("#updateUserInfoButton").prop('disabled', false);
-					}
+					letter.classList.remove("valid");
+					letter.classList.add("invalid");
+				}
+
+				// Validate capital letters
+				var upperCaseLetters = /[A-Z]/g;
+				if (myInput.value.match(upperCaseLetters)) {
+					capital.classList.remove("invalid");
+					capital.classList.add("valid");
+				} else {
+					capital.classList.remove("valid");
+					capital.classList.add("invalid");
+				}
+
+				// Validate numbers
+				var numbers = /[0-9]/g;
+				if (myInput.value.match(numbers)) {
+					number.classList.remove("invalid");
+					number.classList.add("valid");
+				} else {
+					number.classList.remove("valid");
+					number.classList.add("invalid");
+				}
+
+				//Validate Character
+				var characters = /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]+/;
+				if (myInput.value.match(characters)) {
+					character.classList.remove("invalid");
+					character.classList.add("valid");
+				} else {
+					character.classList.remove("valid");
+					character.classList.add("invalid");
+				}
+
+				// Validate length
+				if (myInput.value.length >= 8) {
+					length.classList.remove("invalid");
+					length.classList.add("valid");
+				} else {
+					length.classList.remove("valid");
+					length.classList.add("invalid");
 				}
 			}
 		</script>
+
+		<div th:replace="common/header :: bottom-scripts"></div>
+		<!-- password comparater b/w password and confirmPassword -->
 	</div>
 </body>
 

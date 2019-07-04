@@ -50,7 +50,7 @@
 												<label for="email">* Email Address: </label>
 												<div class="alert alert-info" style="color: red;" th:if="${useremailExists}">Email already exists! Choose a different one.</div> 
 												<input
-													required="required" type="text" class="form-control"
+													required="required" type="email" class="form-control"
 													id="email" name="email" />
 												<p style="color: #828282">A valid email address. All
 													emails from the system withll be sent to this address. The
@@ -108,7 +108,7 @@
 										<form th:action="@{/forgetPassword}" method="post">
 											<div class="form-group">
 												<label for="recoverEmail">* Your Email: </label> <input
-													required="required" type="text" class="form-control"
+													required="required" type="email" class="form-control"
 													id="recoverEmail" name="email" />
 												<p style="color: #828282">Enter your registered email
 													address here.</p>

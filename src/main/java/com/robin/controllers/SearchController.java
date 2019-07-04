@@ -122,7 +122,7 @@ public class SearchController {
 	
 	@RequestMapping("/searchByPrice")
 	public String searchbyprice(
-			@RequestParam("listprice") double ourprice,
+			@RequestParam("ourprice") double ourprice,
 			@RequestParam("category") String category,
 			Model model, Principal principal)
 	{
