@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.robin.models.CartItem;
+import com.robin.models.Order;
 import com.robin.models.Product;
 import com.robin.models.ProductToCartItem;
 import com.robin.models.ShoppingCart;
@@ -84,6 +85,10 @@ public class CartItemService {
 
 	public CartItem save(CartItem cartItem) {
 		return cartItemRepository.save(cartItem);
+	}
+
+	public List<CartItem> findByOrder(Order order) {
+		return cartItemRepository.findByOrder(order);
 	}
 	
 }

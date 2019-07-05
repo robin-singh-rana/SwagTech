@@ -18,9 +18,9 @@ import javax.persistence.OneToOne;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.adminportal.models.security.Authority;
 import com.adminportal.models.security.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements UserDetails{
@@ -44,6 +44,9 @@ public class User implements UserDetails{
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserPayment> userPaymentList;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Order> orderList;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	private ShoppingCart shoppingCart;
@@ -130,6 +133,14 @@ public class User implements UserDetails{
 	}
 	public void setShoppingCart(ShoppingCart shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+	
+	
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -10,7 +10,7 @@
 
 		<!-- Header -->
 		<div th:replace="common/header :: main-header"></div>
-		
+
 		<div class="container-fluid"
 			style="background-image: url(/others/images/banner_2_background.jpg); min-height: 500px; background-repeat: no-repeat; background-position: center; background-attachment: fixed; background-size: cover;">
 			<div style="padding-top: 20px; padding-bottom: 20px;">
@@ -66,7 +66,8 @@
 
 
 						<!-- Checkout Info column-2 -->
-						<div class="col-11 offset-1 col-sm-7 col-md-7 col-lg-7 offset-sm-0 offset-md-0 offset-lg-0">
+						<div
+							class="col-11 offset-1 col-sm-7 col-md-7 col-lg-7 offset-sm-0 offset-md-0 offset-lg-0">
 							<div th:if="${missingRequiredField}">
 								<h5 class="alert alert-warning">There are some fields
 									missing. Field with * is required.</h5>
@@ -79,7 +80,8 @@
 									<div class="panel-heading">
 										<h4 class="panel-title">
 											<a data-toggle="collapse" href="#shippingInfo">
-												<button type="button" class="btn btn-primary btn-sm">1. Shipping Address</button>
+												<button type="button" class="btn btn-primary btn-sm">1.
+													Shipping Address</button>
 											</a>
 										</h4>
 									</div>
@@ -87,7 +89,7 @@
 										data-parent="#accordion"
 										th:classappend="${classActiveShipping}? 'show active'">
 										<div class="panel-body"
-											style="border: 4px solid #007bff; border-radius: 25px;box-shadow: 2px 30px 40px 0 #212529; padding: 10px; width: 90%;">
+											style="border: 4px solid #007bff; border-radius: 25px; box-shadow: 2px 30px 40px 0 #212529; padding: 10px; width: 90%;">
 											<table class="table" th:if="${not emptyShippingList}">
 												<thead>
 													<tr>
@@ -111,6 +113,7 @@
 												<label for="shippingName">* Name</label> <input type="text"
 													class="form-control" id="shippingName"
 													placeholder="Receiver Name" name="shippingAddressName"
+													required="required"
 													th:value="${shippingAddress.shippingAddressName}" />
 											</div>
 
@@ -118,13 +121,13 @@
 												<label for="shippingStreet">* Street Address</label> <input
 													type="text" class="form-control" id="shippingStreet"
 													placeholder="Street Address 1"
-													name="shippingAddressStreet1"
+													name="shippingAddressStreet1" required="required"
 													th:value="${shippingAddress.shippingAddressStreet1}" />
 											</div>
 											<div class="form-group">
 												<input type="text" class="form-control"
 													placeholder="Street Address 2"
-													name="shippingAddressStreet2"
+													name="shippingAddressStreet2" required="required"
 													th:value="${shippingAddress.shippingAddressStreet2}" />
 											</div>
 
@@ -141,7 +144,7 @@
 												<div class="col-4">
 													<div class="form-group">
 														<label for="shippingState">* State</label> <select
-															id="shippingState" class="form-control"
+															id="shippingState" class="form-control-custom"
 															th:name="shippingAddressState"
 															th:value="${shippingAddress.shippingAddressState}"
 															required="required">
@@ -155,8 +158,9 @@
 												<div class="col-4">
 													<div class="form-group">
 														<label for="shippingZipcode">* Zipcode</label> <input
-															type="text" class="form-control" id="shippingZipcode"
-															placeholder="Shipping Zipcode"
+															oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+															type="number" maxlength="6" class="form-control"
+															id="shippingZipcode" placeholder="Shipping Zipcode"
 															th:name="shippingAddressZipcode" required="required"
 															th:value="${shippingAddress.shippingAddressZipcode}" />
 													</div>
@@ -173,8 +177,9 @@
 									<div class="panel-heading">
 										<h4 class="panel-title">
 											<a data-toggle="collapse" href="#paymentInfo">
-											<button type="button" class="btn btn-primary btn-sm"> 2. Payment
-												Information </button></a>
+												<button type="button" class="btn btn-primary btn-sm">
+													2. Payment Information</button>
+											</a>
 										</h4>
 									</div>
 
@@ -206,8 +211,8 @@
 														class="img-responsive" /><br />
 													<div class="form-group">
 														<label for="cardType">* Select Card Type: </label> <select
-															class="form-control" id="cardType" name="type"
-															th:value="${payment.type}">
+															class="form-control-custom" id="cardType" name="type"
+															th:value="${payment.type}" required="required">
 															<option value="visa">Visa</option>
 															<option value="mastercard">Mastercard</option>
 															<option value="discover">Discover</option>
@@ -224,10 +229,12 @@
 													<div class="form-group">
 														<label for="cardNumber">* Card Number:</label>
 														<div class="input-group">
-															<input type="tel" class="form-control" id="cardNumber"
-																required="required" placeHolder="Valid Card Number"
-																th:name="cardNumber" th:value="${payment.cardNumber}" />
-															<span class="input-group-addon"><i
+															<input class="form-control" id="cardNumber"
+																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+																type="number" maxlength="16" required="required"
+																placeHolder="Valid Card Number" th:name="cardNumber"
+																th:value="${payment.cardNumber}" /> <span
+																class="input-group-addon"><i
 																class="fa fa-credit-card" aria-hidden="true"></i></span>
 														</div>
 													</div>
@@ -240,7 +247,7 @@
 														<label>* Expiration Date</label>
 														<div class="row">
 															<div class="col-6">
-																<select class="form-control" name="expiryMonth"
+																<select class="form-control-custom" name="expiryMonth"
 																	required="required" th:value="${payment.expiryMonth}">
 																	<option disabled="disabled">-- Month --</option>
 																	<option value="01">Jan (01)</option>
@@ -258,8 +265,8 @@
 																</select>
 															</div>
 															<div class="col-6">
-																<select class="form-control" name="expiryYear"
-																	th:value="${payment.expiryYear}">
+																<select class="form-control-custom" name="expiryYear"
+																	required="required" th:value="${payment.expiryYear}">
 																	<option disabled="disabled">-- Year --</option>
 																	<option value="2019">2019</option>
 																	<option value="2020">2020</option>
@@ -280,8 +287,10 @@
 												<div class="col-5">
 													<div class="form-group">
 														<label for="cardCVC">CV Code</label> <input id="cardCVC"
-															type="tel" class="form-control" name="cvc"
-															placeholder="CVC" th:name="cvc" th:value="${payment.cvc}" />
+															oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+															type="number" maxlength="3" class="form-control"
+															name="cvc" required="required" placeholder="CVC"
+															th:name="cvc" th:value="${payment.cvc}" />
 													</div>
 												</div>
 											</div>
@@ -303,7 +312,7 @@
 													th:value="${billingAddress.billingAddressStreet1}" /> <input
 													type="text" class="form-control" id="billingAddress"
 													placeholder="Street Address 2"
-													th:name="billingAddressStreet2"
+													th:name="billingAddressStreet2" required="required"
 													th:value="${billingAddress.billingAddressStreet2}" />
 											</div>
 
@@ -320,7 +329,7 @@
 												<div class="col-4">
 													<div class="form-group">
 														<label for="billingState">* State</label> <select
-															id="billingState" class="form-control"
+															id="billingState" class="form-control-custom"
 															th:name="billingAddress"
 															th:value="${billingAddress.billingAddressState}"
 															required="required">
@@ -334,8 +343,9 @@
 												<div class="col-4">
 													<div class="form-group">
 														<label for="billingZipcode">* Zipcode</label> <input
-															type="text" class="form-control" id="billingZipcode"
-															placeholder="Billing Zipcode"
+															class="form-control" id="billingZipcode"
+															oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+															type="number" maxlength="6" placeholder="Billing Zipcode"
 															th:name="billingAddressZipcode" required="required"
 															th:value="${billingAddress.billingAddressZipcode}" />
 													</div>
@@ -353,13 +363,14 @@
 									<div class="panel-heading">
 										<h4 class="panel-title">
 											<a data-toggle="collapse" href="#reviewItems">
-											<button type="button" class="btn btn-primary btn-sm"> 3. Review
-												Items and Shipping</button> </a>
+												<button type="button" class="btn btn-primary btn-sm">
+													3. Review Items and Shipping</button>
+											</a>
 										</h4>
 									</div>
 									<div id="reviewItems" class="collapse" data-parent="#accordion">
 										<div class="panel-body"
-											style="border: 4px solid #007bff; border-radius: 25px; padding: 10px; width: 90%;box-shadow: 2px 30px 40px 0 #212529;">
+											style="border: 4px solid #007bff; border-radius: 25px; padding: 10px; width: 90%; box-shadow: 2px 30px 40px 0 #212529;">
 											<h4>Choose your shipping method:</h4>
 											<div class="radio">
 												<label> <input type="radio" name="shippingMethod"
@@ -412,19 +423,22 @@
 														<p th:if="${cartItem.product.inStockNumber==0}"
 															style="color: darkred;">Product Unavailable</p>
 														<a
-															th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+															th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}"><button
+																type="button" class="btn btn-danger btn-sm">Delete</button></a>
 													</div>
 												</div>
 
 												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 													<h5 style="color: #db3208; font-size: large;">
-														₹<span th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
+														₹<span
+															th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
 															th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 													</h5>
 												</div>
 
 												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-													<h5 style="font-size: large; text-align: center;" th:text="${cartItem.qty}"></h5>
+													<h5 style="font-size: large; text-align: center;"
+														th:text="${cartItem.qty}"></h5>
 												</div>
 
 											</div>
@@ -435,7 +449,7 @@
 												<strong style="font-size: large;">Order Total (<span
 													th:text="${#lists.size(cartItemList)}"></span> items):
 												</strong> <span style="color: #db3208; font-szie: large;">₹<span
-												 th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 'COMMA', 2, 'POINT')}"></span></span>
+													th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 'COMMA', 2, 'POINT')}"></span></span>
 											</h4>
 											<br />
 											<button type="submit" class="btn btn-warning btn-block">Place
