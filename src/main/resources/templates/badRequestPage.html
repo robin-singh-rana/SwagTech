@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header"></head>
+
+<body>
+	<div th:replace="common/header :: main-header"></div>
+
+	<div class="container">
+		<div class="row">
+			<h2 class="section-headline" style="margin-top: 20px;">
+				<span><b>SwagTech</b>-Sorry for the inconvenience to you.</span>
+			</h2>
+		</div>
+		<div class="row" style="margin-top: 50px">
+			<h3>
+				Bad request. The request path is invalid. Click <a th:href="@{/}">here</a>
+				to return to the home page.
+			</h3>
+		</div>
+	</div>
+	<!-- end of container -->
+	<div th:replace="common/header :: footer"></div>
+
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>

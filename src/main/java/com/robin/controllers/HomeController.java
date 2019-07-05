@@ -562,5 +562,10 @@ public class HomeController {
 		return "profile";
 	}
 		
-		
+	@RequestMapping("/badRequestPage")
+	public String errorMessage()
+	{
+		return "badRequestPage";
+	}
+	
 }
