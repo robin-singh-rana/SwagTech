@@ -20,7 +20,7 @@
 							<div class="form-group">
 								<label class="col-2 control-label" for="category">Category:</label>
 								<select th:value="${product.category}" class="form-control"
-									id="category" name="category">
+									id="category" name="category" required="required">
 									<option value="" selected="selected" disabled="disabled">Please
 										select the product category!</option>
 									<option value="Computer &amp; Laptops"
@@ -50,7 +50,7 @@
 									Category:</label>
 								<div class="col-xs-8">
 									<select th:value="${product.subcategory}" class="form-control"
-										id="subcategory" name="subcategory">
+										id="subcategory" name="subcategory" required="required">
 										<option value="" selected="selected" disabled="disabled">Please
 											select the product sub-category!</option>
 										<option value="none"
@@ -150,7 +150,7 @@
 								<div class="col-md-8">
 									<textarea name="description" rows="6" class="form-control"
 										id="description" th:value="${product.description}"
-										placeholder="Enter Description of the product."></textarea>
+										placeholder="Enter Description of the product." required="required"></textarea>
 									<span class="help-block">Description of the product.</span>
 								</div>
 							</div>
