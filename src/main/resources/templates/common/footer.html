@@ -3,41 +3,47 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-	<div th:fragment="shared-footer">
-		<footer class="footer">
+	<div th:fragment="shared-footer"><footer class="footer">
 			<div class="container">
 				<div class="row">
 
 					<div class="col-lg-3 footer_col">
 						<div class="footer_column footer_contact">
 							<div class="logo_container">
-								<div class="logo">
-									<a href="/"><img src="/others/images/logo.png" alt=""></a>
-								</div>
-							</div>
+								<div class="logo"><a href="/"><img
+										src="/others/images/logo.png" alt=""></a></div>
+						</div>
 							<div class="footer_title">Got Questions? Contact Us:</div>
 							<div class="footer_phone">+91 9876543210</div>
 							<div class="footer_contact_text">
 								<p>A B C Road, Gurgaon</p>
 								<p>India</p>
-							</div>
 						</div>
 					</div>
+				</div>
 
 					<div class="col-lg-2 offset-lg-2">
 						<div class="footer_column">
 							<div class="footer_title">Quick Links</div>
 							<ul class="footer_list">
-								<li><a th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">Computers & Laptops</a></li>
+								<li><a
+									th:href="@{/searchByCategory(category='Computer &amp; Laptops')}">Computers
+										& Laptops</a></li>
 								<li><a th:href="@{/searchByCategory(category='Cameras')}">Cameras</a></li>
-								<li><a th:href="@{/searchByCategory(category='SmartPhones')}">Smartphones</a></li>
+								<li><a
+									th:href="@{/searchByCategory(category='SmartPhones')}">Smartphones</a></li>
 								<li><a th:href="@{/searchByCategory(category='Tablets')}">Tablets</a></li>
-								<li><a th:href="@{/searchByCategory(category='TV &amp; Audio')}">TV & Audio</a></li>
-								<li><a th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}">Video Games & Consoles</a></li>
-								<li><a th:href="@{/searchByCategory(category='Accessories')}">Accessories</a></li>
-							</ul>
-						</div>
+								<li><a
+									th:href="@{/searchByCategory(category='TV &amp; Audio')}">TV
+										& Audio</a></li>
+								<li><a
+									th:href="@{/searchByCategory(category='Video Games &amp; Consoles')}">Video
+										Games & Consoles</a></li>
+								<li><a
+									th:href="@{/searchByCategory(category='Accessories')}">Accessories</a></li>
+						</ul>
 					</div>
+				</div>
 
 					<div class="col-lg-2">
 						<div class="footer_column">
@@ -48,9 +54,9 @@
 								<li><a th:href="@{/searchByBrand(brand='Dell')}">Dell</a></li>
 								<li><a th:href="@{/searchByBrand(brand='Nikon')}">Nikon</a></li>
 								<li><a th:href="@{/searchByBrand(brand='Xiaomi')}">Xiaomi</a></li>
-							</ul>
-						</div>
+						</ul>
 					</div>
+				</div>
 
 					<div class="col-lg-2">
 						<div class="footer_column">
@@ -60,17 +66,15 @@
 									th:href="@{/profile}">My Account</a></li>
 								<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My
 										Account</a></li>
-								<li><a href="#">Queries</a></li>
-								<li><a href="#">Customer Services</a></li>
-								<li><a href="#">Returns / Exchange</a></li>
-								<li><a href="#">FAQs</a></li>
-							</ul>
-						</div>
+								<li><a th:href="@{/queries}">Queries</a></li>
+								<li><a th:href="@{/returns}">Returns / Exchange</a></li>
+								<li><a th:href="@{/faq}">FAQs</a></li>
+						</ul>
 					</div>
-
 				</div>
+
 			</div>
-		</footer>
-	</div>
+		</div>
+	</footer></div>
 </body>
 </html>

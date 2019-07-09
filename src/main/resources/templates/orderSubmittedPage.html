@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: shared-header">
+</head>
+
+<body
+	style="background-image: url(/others/images/banner_2_background.jpg); min-height: 500px; background-repeat: no-repeat; background-position: center; background-attachment: fixed; background-size: cover;">
+	<div th:replace="common/header :: main-header"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-8">
+				<h2 class="section-headline" style="margin-top: 20px;"><span>ThankYou for shopping
+						with <b><i>SwagTech</i></b>
+				</span></h2>
+		</div>
+			<div class="col-4"><img src="/others/images/logo.png"
+				class="img-responsive" /></div>
+	</div>
+
+		<div class="row" style="margin-top: 10px;">
+			<div class="col-12">
+				<div class="alert alert-success">
+					<h3><i class="fa fa-check" aria-hidden="true"
+						style="color: limegreen;"></i> Thank you, your order has been
+						placed.</h3>
+					<h4>The estimated delivery date is <span
+						th:text="${estimatedDeliveryDate}"></span>
+				</h4>
+			</div>
+
+				<h3>List of Items</h3>
+				<div class="row" th:each="cartItem : ${cartItemList}">
+					<hr />
+					<div class="col-2"></div>
+					<div class="col-2"><a
+						th:href="@{/productDetail(id=${cartItem.product.id})}"> <img
+							class="img-responsive shelf-product"
+							th:src="#{adminPath}+@{/others/images/product/}+${cartItem.product.id}+'.png'"
+							style="width: 70px;" />
+					</a></div>
+					<div class="col-6">
+						<div style="margin-left: 50px;"><a
+							th:href="@{/productDetail?id=}+${cartItem.product.id}"><h4
+								th:text="${cartItem.product.title}"></h4></a></div>
+				</div>
+
+					<div class="col-2">
+						<h5 style="color: #db3208; font-size: large;">₹<span
+							th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
+							th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+					</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- end of container -->
+	<div th:replace="common/footer :: shared-footer"></div>
+
+	<div th:replace="common/header :: bottom-scripts"></div>
+</body>
+</html>

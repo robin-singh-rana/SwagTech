@@ -673,10 +673,9 @@
 						<ul class="footer_list">
 							<li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">My Account</a></li>
 							<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
-							<li><a href="#">Queries</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
+							<li><a th:href="@{/queries}">Queries</a></li>
+							<li><a th:href="@{/returns}">Returns / Exchange</a></li>
+							<li><a th:href="@{/faq}">FAQs</a></li>
 						</ul>
 					</div>
 				</div>

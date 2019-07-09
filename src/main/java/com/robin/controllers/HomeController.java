@@ -561,11 +561,35 @@ public class HomeController {
 		
 		return "profile";
 	}
-		
+	
+	@RequestMapping("/orderSubmittedPage")
+	public String finalPage()
+	{
+		return "orderSubmittedPage";
+	}
+	
 	@RequestMapping("/badRequestPage")
 	public String errorMessage()
 	{
 		return "badRequestPage";
+	}
+	
+	@RequestMapping("/queries")
+	public String queries()
+	{
+		return "queries";
+	}
+	
+	@RequestMapping("/faq")
+	public String faq()
+	{
+		return "faq";
+	}
+	
+	@RequestMapping("/returns")
+	public String returnPolicies()
+	{
+		return "returns";
 	}
 	
 }
