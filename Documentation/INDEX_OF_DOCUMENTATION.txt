@@ -1,0 +1,3 @@
+Following diagrams can be found here:
+	1. Architecture
+	2. Entity-Relationship
