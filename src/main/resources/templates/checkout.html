@@ -295,7 +295,8 @@
 												</div>
 											</div>
 
-
+											<h3>Billing Address</h3>
+											
 											<!-- Billing Address -->
 											<div class="form-group">
 												<label for="billingName">* Name</label> <input type="text"
@@ -430,7 +431,7 @@
 
 												<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 													<h5 style="color: #db3208; font-size: large;">
-														<span
+														₹<span
 															th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
 															th:style="${cartItem.product.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
 													</h5>
